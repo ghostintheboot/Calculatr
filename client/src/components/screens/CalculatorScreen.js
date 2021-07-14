@@ -1,6 +1,7 @@
 import React from 'react';
 import './CalculatorScreen.css';
 import PointTarget from 'react-point';
+import Modal from 'react-modal';
 
 
 
@@ -9,30 +10,30 @@ class AutoScalingText extends React.Component {
   state = {
     scale: 1
   };
-  
+
   componentDidUpdate() {
     const { scale } = this.state
-    
+
     const node = this.node
     const parentNode = node.parentNode
-    
+
     const availableWidth = parentNode.offsetWidth
     const actualWidth = node.offsetWidth
     const actualScale = availableWidth / actualWidth
-    
+
     if (scale === actualScale)
       return
-    
+
     if (actualScale < 1) {
       this.setState({ scale: actualScale })
     } else if (scale < 1) {
       this.setState({ scale: 1 })
     }
   }
-  
+
   render() {
     const { scale } = this.state
-    
+
     return (
       <div
         className="auto-scaling-text"
@@ -43,41 +44,47 @@ class AutoScalingText extends React.Component {
   }
 }
 
+
+
 class CalculatorDisplay extends React.Component {
   render() {
-    const { value, ...props } = this.props
-    
-    const language = navigator.language || 'en-US'
+    const { value, ...props } = this.props;
+
+    const language = navigator.language || 'en-US';
     let formattedValue = parseFloat(value).toLocaleString(language, {
       useGrouping: true,
       maximumFractionDigits: 6
-    })
-    
+    });
+
     // Add back missing .0 in e.g. 12.0
-    const match = value.match(/\.\d*?(0*)$/)
-    
+    const match = value.match(/\.\d*?(0*)$/);
+
     if (match)
-      formattedValue += (/[1-9]/).test(match[0]) ? match[1] : match[0]
-    
+      formattedValue += (/[1-9]/).test(match[0]) ? match[1] : match[0];
+
     return (
       <div {...props} className="calculator-display">
         <AutoScalingText>{formattedValue}</AutoScalingText>
       </div>
-    )
+    );
   }
 }
 
+
+
 class CalculatorKey extends React.Component {
   render() {
-    const { onPress, className, ...props } = this.props
-    
+    const { onPress, className, ...props } = this.props;
+
     return (
       <PointTarget onPoint={onPress}>
-        <button className={`calculator-key ${className}`} {...props}/>
+        <button className={`calculator-key ${className}`} {...props} />
       </PointTarget>
-    )
+    );
   }
 }
+
+
 
 const CalculatorOperations = {
   '/': (prevValue, nextValue) => prevValue / nextValue,
@@ -92,59 +99,86 @@ class CalculatorScreen extends React.Component {
     value: null,
     displayValue: '0',
     operator: null,
-    waitingForOperand: false
-  };
+    showModal: false,
+    waitingForOperand: false,
+    isSaveButtonShown: false,
+    formValue: null
+  }
+
+  handleOpenModal = this.handleOpenModal.bind(this);
+  handleCloseModal = this.handleCloseModal.bind(this);
+  handleChange = this.handleChange.bind(this);
+  handleSubmit = this.handleSubmit.bind(this);
+
+  handleOpenModal() {
+    this.setState({ showModal: true });
+  }
   
+  handleCloseModal() {
+    this.setState({ showModal: false });
+  }
+
+  handleSubmit() {
+    alert(`Value: ${this.state.displayValue}\nText Input: ${this.state.formValue}`);
+    // event.preventDefault();
+  }
+
+  handleChange(event) {
+    this.setState({ formValue: event.target.value })
+  }
+
   clearAll() {
     this.setState({
       value: null,
       displayValue: '0',
       operator: null,
-      waitingForOperand: false
+      waitingForOperand: false,
+      isSaveButtonShown: false
     })
   }
 
   clearDisplay() {
     this.setState({
-      displayValue: '0'
+      displayValue: '0',
+      isSaveButtonShown: false
     })
   }
-  
+
   clearLastChar() {
     const { displayValue } = this.state
-    
+
     this.setState({
       displayValue: displayValue.substring(0, displayValue.length - 1) || '0'
     })
   }
-  
+
   toggleSign() {
     const { displayValue } = this.state
     const newValue = parseFloat(displayValue) * -1
-    
+
     this.setState({
       displayValue: String(newValue)
     })
   }
-  
+
   inputPercent() {
     const { displayValue } = this.state
     const currentValue = parseFloat(displayValue)
-    
+
     if (currentValue === 0)
       return
-    
+
     const fixedDigits = displayValue.replace(/^-?\d*\.?/, '')
     const newValue = parseFloat(displayValue) / 100
-    
+
     this.setState({
       displayValue: String(newValue.toFixed(fixedDigits.length + 2))
     })
   }
-  
+
   inputDot() {
     const { displayValue } = this.state
-    
+
     if (!(/\./).test(displayValue)) {
       this.setState({
         displayValue: displayValue + '.',
@@ -152,10 +186,10 @@ class CalculatorScreen extends React.Component {
       })
     }
   }
-  
+
   inputDigit(digit) {
     const { displayValue, waitingForOperand } = this.state
-    
+
     if (waitingForOperand) {
       this.setState({
         displayValue: String(digit),
@@ -167,40 +201,41 @@ class CalculatorScreen extends React.Component {
       })
     }
   }
-  
-  performOperation(nextOperator) {    
-    const { value, displayValue, operator } = this.state
-    const inputValue = parseFloat(displayValue)
-    
+
+  performOperation(nextOperator) {
+    const { value, displayValue, operator } = this.state;
+    const inputValue = parseFloat(displayValue);
+
     if (value == null) {
       this.setState({
         value: inputValue
-      })
+      });
     } else if (operator) {
-      const currentValue = value || 0
-      const newValue = CalculatorOperations[operator](currentValue, inputValue)
-      
+      const currentValue = value || 0;
+      const newValue = CalculatorOperations[operator](currentValue, inputValue);
+
       this.setState({
         value: newValue,
         displayValue: String(newValue)
-      })
+      });
     }
-    
+
     this.setState({
       waitingForOperand: true,
       operator: nextOperator
-    })
+    });
   }
-  
+
   handleKeyDown = (event) => {
     let { key } = event
-    
+
     if (key === 'Enter')
       key = '='
-    
+
     if ((/\d/).test(key)) {
       event.preventDefault()
       this.inputDigit(parseInt(key, 10))
+      // this.setState({ isSaveButtonShown: false });
     } else if (key in CalculatorOperations) {
       event.preventDefault()
       this.performOperation(key)
@@ -215,7 +250,7 @@ class CalculatorScreen extends React.Component {
       this.clearLastChar()
     } else if (key === 'Clear') {
       event.preventDefault()
-      
+
       if (this.state.displayValue !== '0') {
         this.clearDisplay()
       } else {
@@ -223,57 +258,89 @@ class CalculatorScreen extends React.Component {
       }
     }
   };
-  
+
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeyDown)
   }
-  
+
   componentWillUnmount() {
     document.removeEventListener('keydown', this.handleKeyDown)
   }
-  
+
   render() {
     const { displayValue } = this.state
-    
+
     const clearDisplay = displayValue !== '0'
     const clearText = clearDisplay ? 'C' : 'AC'
-    
+
     return (
       <div id="wrapper">
-      <div id="app">
-      <div className="calculator">
-        <CalculatorDisplay value={displayValue}/>
-        <div className="calculator-keypad">
-          <div className="input-keys">
-            <div className="function-keys">
-              <CalculatorKey className="key-clear" onPress={() => clearDisplay ? this.clearDisplay() : this.clearAll()}>{clearText}</CalculatorKey>
-              <CalculatorKey className="key-sign" onPress={() => this.toggleSign()}>±</CalculatorKey>
-              <CalculatorKey className="key-percent" onPress={() => this.inputPercent()}>%</CalculatorKey>
-            </div>
-            <div className="digit-keys">
-              <CalculatorKey className="key-0" onPress={() => this.inputDigit(0)}>0</CalculatorKey>
-              <CalculatorKey className="key-dot" onPress={() => this.inputDot()}>●</CalculatorKey>
-              <CalculatorKey className="key-1" onPress={() => this.inputDigit(1)}>1</CalculatorKey>
-              <CalculatorKey className="key-2" onPress={() => this.inputDigit(2)}>2</CalculatorKey>
-              <CalculatorKey className="key-3" onPress={() => this.inputDigit(3)}>3</CalculatorKey>
-              <CalculatorKey className="key-4" onPress={() => this.inputDigit(4)}>4</CalculatorKey>
-              <CalculatorKey className="key-5" onPress={() => this.inputDigit(5)}>5</CalculatorKey>
-              <CalculatorKey className="key-6" onPress={() => this.inputDigit(6)}>6</CalculatorKey>
-              <CalculatorKey className="key-7" onPress={() => this.inputDigit(7)}>7</CalculatorKey>
-              <CalculatorKey className="key-8" onPress={() => this.inputDigit(8)}>8</CalculatorKey>
-              <CalculatorKey className="key-9" onPress={() => this.inputDigit(9)}>9</CalculatorKey>
+        <div id="app">
+          <div className="calculator">
+            <CalculatorDisplay value={displayValue} />
+            <div className="calculator-keypad">
+              <div className="input-keys">
+                <div className="function-keys">
+                  <CalculatorKey className="key-clear" onPress={() => clearDisplay ? this.clearDisplay() : this.clearAll()}>{clearText}</CalculatorKey>
+                  <CalculatorKey className="key-sign" onPress={() => this.toggleSign()}>±</CalculatorKey>
+                  <CalculatorKey className="key-percent" onPress={() => this.inputPercent()}>%</CalculatorKey>
+                </div>
+                <div className="digit-keys">
+                  <CalculatorKey className="key-0" onPress={() => this.inputDigit(0)}>0</CalculatorKey>
+                  <CalculatorKey className="key-dot" onPress={() => this.inputDot()}>●</CalculatorKey>
+                  <CalculatorKey className="key-1" onPress={() => this.inputDigit(1)}>1</CalculatorKey>
+                  <CalculatorKey className="key-2" onPress={() => this.inputDigit(2)}>2</CalculatorKey>
+                  <CalculatorKey className="key-3" onPress={() => this.inputDigit(3)}>3</CalculatorKey>
+                  <CalculatorKey className="key-4" onPress={() => this.inputDigit(4)}>4</CalculatorKey>
+                  <CalculatorKey className="key-5" onPress={() => this.inputDigit(5)}>5</CalculatorKey>
+                  <CalculatorKey className="key-6" onPress={() => this.inputDigit(6)}>6</CalculatorKey>
+                  <CalculatorKey className="key-7" onPress={() => this.inputDigit(7)}>7</CalculatorKey>
+                  <CalculatorKey className="key-8" onPress={() => this.inputDigit(8)}>8</CalculatorKey>
+                  <CalculatorKey className="key-9" onPress={() => this.inputDigit(9)}>9</CalculatorKey>
+                </div>
+              </div>
+              <div className="operator-keys">
+                <CalculatorKey className="key-divide" onPress={() => this.performOperation('/')}>÷</CalculatorKey>
+                <CalculatorKey className="key-multiply" onPress={() => this.performOperation('*')}>×</CalculatorKey>
+                <CalculatorKey className="key-subtract" onPress={() => this.performOperation('-')}>−</CalculatorKey>
+                <CalculatorKey className="key-add" onPress={() => this.performOperation('+')}>+</CalculatorKey>
+                <CalculatorKey 
+                  className="key-equals" 
+                  onPress={() => { this.performOperation('='); 
+                  setTimeout(() => { this.setState( prevState => ({ isSaveButtonShown: true})) }, 100) }}
+                >=</CalculatorKey>
+              </div>
             </div>
           </div>
-          <div className="operator-keys">
-            <CalculatorKey className="key-divide" onPress={() => this.performOperation('/')}>÷</CalculatorKey>
-            <CalculatorKey className="key-multiply" onPress={() => this.performOperation('*')}>×</CalculatorKey>
-            <CalculatorKey className="key-subtract" onPress={() => this.performOperation('-')}>−</CalculatorKey>
-            <CalculatorKey className="key-add" onPress={() => this.performOperation('+')}>+</CalculatorKey>
-            <CalculatorKey className="key-equals" onPress={() => this.performOperation('=')}>=</CalculatorKey>
+        {this.state.isSaveButtonShown 
+          ? <button onClick={ () => {this.handleOpenModal(); console.log(this.state.displayValue)} }>SAVE DATA</button>
+          : null
+        }
+        <Modal isOpen={this.state.showModal} contentLabel="Quick Modal">
+          <div>
+            <label>
+              <h1>Current Value to be Stored: {this.state.displayValue}</h1>
+            </label>
           </div>
+          <div>
+            <label>
+              <h3>Add Optional Notes Here: </h3>
+              <input 
+                type="text" 
+                value={this.state.formValue} 
+                placeholder="Enter optional notes here." 
+                maxLength={200}
+                size={200}
+                onChange={event => this.handleChange(event)} 
+              />
+            </label>
+          </div>
+          <button type="submit" onClick={ () => {
+            this.handleSubmit();
+            setTimeout(() => { this.handleCloseModal() }, 100) } }>[Submit]</button>
+          <button onClick={this.handleCloseModal}>[Cancel]</button>
+        </Modal>
         </div>
-      </div>
-      </div>
       </div>
     );
   }
