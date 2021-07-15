@@ -134,17 +134,22 @@ button:active {
   background:  linear-gradient(to bottom, rgba(252,156,23,1) 0%, rgba(247,126,27,1) 100%);
 }
 
-.better-styling {
+.modal-container {
   color: white;
   position: absolute;
-  background-color: fuchsia;
+  background-color:rgb(63, 63, 63);
   top: 120px;
-  left: 50px;
-  /* display: flex; */
-  /* justify-content: center; */
-  /* align-items: center; */
-  /* margin: 120px auto 0 auto; */
+  left: 15px;
   z-index: 9;
+}
+
+.modal-title {
+  font-size: 2em;
+  text-align: center;
+}
+
+.modal-textarea {
+  font-size: 1.2em;
 }
 
 .normal-modal {
@@ -161,12 +166,28 @@ button:active {
   z-index: 5;
 }
 
+.first-save-button {
+  color:azure;
+  background-color: dodgerblue;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 5px;
+  font-size: 2.25em;
+}
+
 .save-button {
   color:azure;
   background-color: dodgerblue;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 2em;
+  margin-bottom: 10px;
 }
 
 .close-button {
   color: honeydew;
-  background-color: forestgreen;
+  background-color: firebrick;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 2em;
 }

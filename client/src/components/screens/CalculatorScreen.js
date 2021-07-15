@@ -127,8 +127,9 @@ class CalculatorScreen extends React.Component {
       displayValue: '0',
       operator: null,
       waitingForOperand: false,
-      isSaveButtonShown: false
-    })
+      isSaveButtonShown: false,
+      formValue: ''
+    });
   }
 
   clearDisplay() {
@@ -261,15 +262,6 @@ class CalculatorScreen extends React.Component {
     document.removeEventListener('keydown', this.handleKeyDown)
   }
 
-  // 😟 This shuts down the WHOLE THING.
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   if (this.state.isModalShown === true) {
-  //     if (this.state.displayValue !== nextState.displayValue) {
-  //       return false;
-  //     }
-  //   }
-  // }
-
   render() {
     const { displayValue } = this.state
 
@@ -283,12 +275,13 @@ class CalculatorScreen extends React.Component {
             <CalculatorDisplay value={displayValue} />
 
             {this.state.isModalShown &&
-              <div className="better-styling">
+              <div className="modal-container">
                 <div>
                   <div>
                     <label>
-                      <h3>Add Optional Notes Here: </h3>
+                      <h3 className="modal-title">Calculatr Notes:</h3>
                       <textarea
+                        className="modal-textarea"
                         type="text"
                         value={this.state.formValue}
                         placeholder="Enter optional notes here."
@@ -302,13 +295,22 @@ class CalculatorScreen extends React.Component {
                   </div>
                 </div>
                 <div>
-                  <button className="save-button" type="submit" onClick={() => {
-                    this.handleSubmit();
-                    setTimeout(() => { this.handleCloseModal() }, 100)
-                  }}>[ Submit ]
+                  <button 
+                    className="save-button" 
+                    type="submit" 
+                    onClick={() => {
+                      this.handleSubmit();
+                      this.clearAll();
+                      setTimeout(() => { this.handleCloseModal() }, 100);
+                      }}>[ Submit ]
                   </button>
-                  <button className="close-button" style={{ textAlign: "center" }} onClick={this.handleCloseModal}>[ Cancel ]</button>
-                  <br></br>
+                  <button 
+                    className="close-button" 
+                    onClick={() => {
+                      this.clearAll();
+                      this.handleCloseModal();
+                      }}>[ Cancel ]
+                  </button>
                 </div>
               </div>
             }
@@ -352,7 +354,10 @@ class CalculatorScreen extends React.Component {
           </div>
 
           {this.state.isSaveButtonShown
-            ? <button onClick={() => this.handleSaveModal()}>SAVE DATA</button>
+            ? <button 
+                className="first-save-button"
+                onClick={() => this.handleSaveModal()}>[ Save This Calculation ]
+              </button>
             : null
           }
         </div>
