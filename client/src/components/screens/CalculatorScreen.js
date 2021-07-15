@@ -1,7 +1,7 @@
 import React from 'react';
 import './CalculatorScreen.css';
 import PointTarget from 'react-point';
-import Modal from 'react-modal';
+// import Modal from 'react-modal';
 
 
 
@@ -44,8 +44,6 @@ class AutoScalingText extends React.Component {
   }
 }
 
-
-
 class CalculatorDisplay extends React.Component {
   render() {
     const { value, ...props } = this.props;
@@ -70,8 +68,6 @@ class CalculatorDisplay extends React.Component {
   }
 }
 
-
-
 class CalculatorKey extends React.Component {
   render() {
     const { onPress, className, ...props } = this.props;
@@ -83,8 +79,6 @@ class CalculatorKey extends React.Component {
     );
   }
 }
-
-
 
 const CalculatorOperations = {
   '/': (prevValue, nextValue) => prevValue / nextValue,
@@ -99,23 +93,23 @@ class CalculatorScreen extends React.Component {
     value: null,
     displayValue: '0',
     operator: null,
-    showModal: false,
     waitingForOperand: false,
+    isModalShown: true,
     isSaveButtonShown: false,
-    formValue: null
+    formValue: ''
   }
 
-  handleOpenModal = this.handleOpenModal.bind(this);
+  handleSaveModal = this.handleSaveModal.bind(this);
   handleCloseModal = this.handleCloseModal.bind(this);
   handleChange = this.handleChange.bind(this);
   handleSubmit = this.handleSubmit.bind(this);
 
-  handleOpenModal() {
-    this.setState({ showModal: true });
+  handleSaveModal() {
+    this.setState({ isModalShown: true });
   }
-  
+
   handleCloseModal() {
-    this.setState({ showModal: false });
+    this.setState({ isModalShown: false });
   }
 
   handleSubmit() {
@@ -267,6 +261,15 @@ class CalculatorScreen extends React.Component {
     document.removeEventListener('keydown', this.handleKeyDown)
   }
 
+  // 😟 This shuts down the WHOLE THING.
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   if (this.state.isModalShown === true) {
+  //     if (this.state.displayValue !== nextState.displayValue) {
+  //       return false;
+  //     }
+  //   }
+  // }
+
   render() {
     const { displayValue } = this.state
 
@@ -278,68 +281,80 @@ class CalculatorScreen extends React.Component {
         <div id="app">
           <div className="calculator">
             <CalculatorDisplay value={displayValue} />
-            <div className="calculator-keypad">
-              <div className="input-keys">
-                <div className="function-keys">
-                  <CalculatorKey className="key-clear" onPress={() => clearDisplay ? this.clearDisplay() : this.clearAll()}>{clearText}</CalculatorKey>
-                  <CalculatorKey className="key-sign" onPress={() => this.toggleSign()}>±</CalculatorKey>
-                  <CalculatorKey className="key-percent" onPress={() => this.inputPercent()}>%</CalculatorKey>
+
+            {this.state.isModalShown &&
+              <div className="better-styling">
+                <div>
+                  <div>
+                    <label>
+                      <h3>Add Optional Notes Here: </h3>
+                      <textarea
+                        type="text"
+                        value={this.state.formValue}
+                        placeholder="Enter optional notes here."
+                        maxLength={200}
+                        size={25}
+                        rows={10}
+                        cols={30}
+                        onChange={event => this.handleChange(event)}
+                      />
+                    </label>
+                  </div>
                 </div>
-                <div className="digit-keys">
-                  <CalculatorKey className="key-0" onPress={() => this.inputDigit(0)}>0</CalculatorKey>
-                  <CalculatorKey className="key-dot" onPress={() => this.inputDot()}>●</CalculatorKey>
-                  <CalculatorKey className="key-1" onPress={() => this.inputDigit(1)}>1</CalculatorKey>
-                  <CalculatorKey className="key-2" onPress={() => this.inputDigit(2)}>2</CalculatorKey>
-                  <CalculatorKey className="key-3" onPress={() => this.inputDigit(3)}>3</CalculatorKey>
-                  <CalculatorKey className="key-4" onPress={() => this.inputDigit(4)}>4</CalculatorKey>
-                  <CalculatorKey className="key-5" onPress={() => this.inputDigit(5)}>5</CalculatorKey>
-                  <CalculatorKey className="key-6" onPress={() => this.inputDigit(6)}>6</CalculatorKey>
-                  <CalculatorKey className="key-7" onPress={() => this.inputDigit(7)}>7</CalculatorKey>
-                  <CalculatorKey className="key-8" onPress={() => this.inputDigit(8)}>8</CalculatorKey>
-                  <CalculatorKey className="key-9" onPress={() => this.inputDigit(9)}>9</CalculatorKey>
+                <div>
+                  <button className="save-button" type="submit" onClick={() => {
+                    this.handleSubmit();
+                    setTimeout(() => { this.handleCloseModal() }, 100)
+                  }}>[ Submit ]
+                  </button>
+                  <button className="close-button" style={{ textAlign: "center" }} onClick={this.handleCloseModal}>[ Cancel ]</button>
+                  <br></br>
                 </div>
               </div>
-              <div className="operator-keys">
-                <CalculatorKey className="key-divide" onPress={() => this.performOperation('/')}>÷</CalculatorKey>
-                <CalculatorKey className="key-multiply" onPress={() => this.performOperation('*')}>×</CalculatorKey>
-                <CalculatorKey className="key-subtract" onPress={() => this.performOperation('-')}>−</CalculatorKey>
-                <CalculatorKey className="key-add" onPress={() => this.performOperation('+')}>+</CalculatorKey>
-                <CalculatorKey 
-                  className="key-equals" 
-                  onPress={() => { this.performOperation('='); 
-                  setTimeout(() => { this.setState( prevState => ({ isSaveButtonShown: true})) }, 100) }}
-                >=</CalculatorKey>
-              </div>
+            }
+            <div className={this.state.isModalShown ? "dark-modal" : "normal-modal"}>
+              <div className="calculator-keypad">
+                <div className="input-keys">
+                  <div className="function-keys">
+                    <CalculatorKey className="key-clear" onPress={() => clearDisplay ? this.clearDisplay() : this.clearAll()}>{clearText}</CalculatorKey>
+                    <CalculatorKey className="key-sign" onPress={() => this.toggleSign()}>±</CalculatorKey>
+                    <CalculatorKey className="key-percent" onPress={() => this.inputPercent()}>%</CalculatorKey>
+                  </div>
+                  <div className="digit-keys">
+                    <CalculatorKey className="key-0" onPress={() => this.inputDigit(0)}>0</CalculatorKey>
+                    <CalculatorKey className="key-dot" onPress={() => this.inputDot()}>●</CalculatorKey>
+                    <CalculatorKey className="key-1" onPress={() => this.inputDigit(1)}>1</CalculatorKey>
+                    <CalculatorKey className="key-2" onPress={() => this.inputDigit(2)}>2</CalculatorKey>
+                    <CalculatorKey className="key-3" onPress={() => this.inputDigit(3)}>3</CalculatorKey>
+                    <CalculatorKey className="key-4" onPress={() => this.inputDigit(4)}>4</CalculatorKey>
+                    <CalculatorKey className="key-5" onPress={() => this.inputDigit(5)}>5</CalculatorKey>
+                    <CalculatorKey className="key-6" onPress={() => this.inputDigit(6)}>6</CalculatorKey>
+                    <CalculatorKey className="key-7" onPress={() => this.inputDigit(7)}>7</CalculatorKey>
+                    <CalculatorKey className="key-8" onPress={() => this.inputDigit(8)}>8</CalculatorKey>
+                    <CalculatorKey className="key-9" onPress={() => this.inputDigit(9)}>9</CalculatorKey>
+                  </div>
+                </div>
+                <div className="operator-keys">
+                  <CalculatorKey className="key-divide" onPress={() => this.performOperation('/')}>÷</CalculatorKey>
+                  <CalculatorKey className="key-multiply" onPress={() => this.performOperation('*')}>×</CalculatorKey>
+                  <CalculatorKey className="key-subtract" onPress={() => this.performOperation('-')}>−</CalculatorKey>
+                  <CalculatorKey className="key-add" onPress={() => this.performOperation('+')}>+</CalculatorKey>
+                  <CalculatorKey
+                    className="key-equals"
+                    onPress={() => {
+                      this.performOperation('=');
+                      setTimeout(() => { this.setState(prevState => ({ isSaveButtonShown: true })) }, 100)
+                    }}
+                  >=</CalculatorKey>
+                </div> {/* END normal-modal */} 
+              </div> {/* END calculator-keypad */}
             </div>
           </div>
-        {this.state.isSaveButtonShown 
-          ? <button onClick={ () => {this.handleOpenModal(); console.log(this.state.displayValue)} }>SAVE DATA</button>
-          : null
-        }
-        <Modal isOpen={this.state.showModal} contentLabel="Quick Modal">
-          <div>
-            <label>
-              <h1>Current Value to be Stored: {this.state.displayValue}</h1>
-            </label>
-          </div>
-          <div>
-            <label>
-              <h3>Add Optional Notes Here: </h3>
-              <input 
-                type="text" 
-                value={this.state.formValue} 
-                placeholder="Enter optional notes here." 
-                maxLength={200}
-                size={200}
-                onChange={event => this.handleChange(event)} 
-              />
-            </label>
-          </div>
-          <button type="submit" onClick={ () => {
-            this.handleSubmit();
-            setTimeout(() => { this.handleCloseModal() }, 100) } }>[Submit]</button>
-          <button onClick={this.handleCloseModal}>[Cancel]</button>
-        </Modal>
+
+          {this.state.isSaveButtonShown
+            ? <button onClick={() => this.handleSaveModal()}>SAVE DATA</button>
+            : null
+          }
         </div>
       </div>
     );

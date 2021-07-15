@@ -75,8 +75,8 @@ button:active {
 
 .calculator-keypad {
   height: 400px;
-  
   display: flex;
+  /* position: relative; */
 }
 
 .calculator .input-keys {
@@ -132,4 +132,41 @@ button:active {
 }
 .calculator .operator-keys {
   background:  linear-gradient(to bottom, rgba(252,156,23,1) 0%, rgba(247,126,27,1) 100%);
+}
+
+.better-styling {
+  color: white;
+  position: absolute;
+  background-color: fuchsia;
+  top: 120px;
+  left: 50px;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* margin: 120px auto 0 auto; */
+  z-index: 9;
+}
+
+.normal-modal {
+  height: 400px;
+  width: 320px;
+  background-color: rgba(0,0,0,0);
+}
+
+.dark-modal {
+  height: 400px;
+  width: 320px;
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.save-button {
+  color:azure;
+  background-color: dodgerblue;
+}
+
+.close-button {
+  color: honeydew;
+  background-color: forestgreen;
 }
