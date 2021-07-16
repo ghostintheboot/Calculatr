@@ -44,7 +44,7 @@ class AutoScalingText extends React.Component {
   }
 }
 
-class CalculatorDisplay extends React.Component {
+class CalculatorDisplay extends React.PureComponent {
   render() {
     const { value, ...props } = this.props;
 
@@ -94,7 +94,7 @@ class CalculatorScreen extends React.Component {
     displayValue: '0',
     operator: null,
     waitingForOperand: false,
-    isModalShown: true,
+    isModalShown: false,
     isSaveButtonShown: false,
     formValue: ''
   }
@@ -221,46 +221,48 @@ class CalculatorScreen extends React.Component {
     });
   }
 
-  handleKeyDown = (event) => {
-    let { key } = event
+  /* 😢 Couldn't figure out how to disable calc keys during modal focus. */
+  // handleKeyDown = (event) => {
+  //   let { key } = event
 
-    if (key === 'Enter')
-      key = '='
+  //   if (key === 'Enter') {
+  //     key = '=';
+  //     setTimeout(() => { this.setState( () => ({ isSaveButtonShown: true })) }, 100)
+  //   }
 
-    if ((/\d/).test(key)) {
-      event.preventDefault()
-      this.inputDigit(parseInt(key, 10))
-      // this.setState({ isSaveButtonShown: false });
-    } else if (key in CalculatorOperations) {
-      event.preventDefault()
-      this.performOperation(key)
-    } else if (key === '.') {
-      event.preventDefault()
-      this.inputDot()
-    } else if (key === '%') {
-      event.preventDefault()
-      this.inputPercent()
-    } else if (key === 'Backspace') {
-      event.preventDefault()
-      this.clearLastChar()
-    } else if (key === 'Clear') {
-      event.preventDefault()
+  //   if ((/\d/).test(key)) {
+  //     event.preventDefault()
+  //     this.inputDigit(parseInt(key, 10))
+  //   } else if (key in CalculatorOperations) {
+  //     event.preventDefault()
+  //     this.performOperation(key)
+  //   } else if (key === '.') {
+  //     event.preventDefault()
+  //     this.inputDot()
+  //   } else if (key === '%') {
+  //     event.preventDefault()
+  //     this.inputPercent()
+  //   } else if (key === 'Backspace') {
+  //     event.preventDefault()
+  //     this.clearLastChar()
+  //   } else if (key === 'Clear') {
+  //     event.preventDefault()
 
-      if (this.state.displayValue !== '0') {
-        this.clearDisplay()
-      } else {
-        this.clearAll()
-      }
-    }
-  };
+  //     if (this.state.displayValue !== '0') {
+  //       this.clearDisplay()
+  //     } else {
+  //       this.clearAll()
+  //     }
+  //   }
+  // };
 
-  componentDidMount() {
-    document.addEventListener('keydown', this.handleKeyDown)
-  }
+  // componentDidMount() {
+  //   document.addEventListener('keydown', this.handleKeyDown);
+  // }
 
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.handleKeyDown)
-  }
+  // componentWillUnmount() {
+  //   document.removeEventListener('keydown', this.handleKeyDown)
+  // }
 
   render() {
     const { displayValue } = this.state
@@ -314,6 +316,7 @@ class CalculatorScreen extends React.Component {
                 </div>
               </div>
             }
+            
             <div className={this.state.isModalShown ? "dark-modal" : "normal-modal"}>
               <div className="calculator-keypad">
                 <div className="input-keys">
@@ -356,7 +359,10 @@ class CalculatorScreen extends React.Component {
           {this.state.isSaveButtonShown
             ? <button 
                 className="first-save-button"
-                onClick={() => this.handleSaveModal()}>[ Save This Calculation ]
+                onClick={() => {
+                  this.handleSaveModal();
+                  this.setState( () => ({disabled: true}));
+                }}>[ Save This Calculation ]
               </button>
             : null
           }
