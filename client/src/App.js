@@ -11,6 +11,7 @@ import RegisterScreen from './components/screens/RegisterScreen';
 import ForgotPasswordScreen from './components/screens/ForgotPasswordScreen';
 import ResetPasswordScreen from './components/screens/ResetPasswordScreen';
 import CalculatorScreen from './components/screens/CalculatorScreen';
+import SavedNotesScreen from './components/screens/SavedNotesScreen';
 
 
 
@@ -25,6 +26,7 @@ const App = () => {
           <Route exact path="/forgotpassword" component={ForgotPasswordScreen}/>
           <Route exact path="/passwordreset/:resetToken" component={ResetPasswordScreen}/>
           <Route exact path="/calc" component={CalculatorScreen}/>
+          <Route exact path="/notes" component={SavedNotesScreen}/>
         </Switch>
       </div>
     </Router>

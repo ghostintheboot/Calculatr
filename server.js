@@ -13,6 +13,7 @@ connectDB();
 
 app.use(express.json());
 app.use('/api/auth', require('./routes/authRoutes'));
+app.use('/api/calc', require('./routes/calcRoutes'));
 app.use('/private', require('./routes/privateRoutes'));
 
 
