@@ -19,7 +19,7 @@ const connectDB = async () => {
   mongoose.connect(DB, {
     useNewUrlParser: true,
     useCreateIndex: true,
-    useFindAndModify: false
+    useFindAndModify: true
   }).then( () => console.log('MongoBongo II: ⚡Electric⚡ Boogaloo... connected!'));
 }
 

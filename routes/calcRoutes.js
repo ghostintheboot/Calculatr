@@ -1,15 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const { protect } = require('../middlewares/authProtect');
-const { check, validationResult } = require('express-validator')
+const { check, validationResult } = require('express-validator');
 
 
 
 // CalcSchema Model.
 const CalcData = require('../models/CalcData');
 
-// @route Get /calcs
-// @des Get calcs
+
+
+// @route GET /api/calc
+// @des Get calculations from one logged-in user.
 // @access Private
 router.get('/', protect, async (req, res) => {
   try {
@@ -23,8 +25,8 @@ router.get('/', protect, async (req, res) => {
 
 
 
-// @route POST /calc
-// @des Add new calc
+// @route POST /api/calc
+// @des Add new calculation.
 // @access Private
 router.post('/',
   [
@@ -58,49 +60,62 @@ router.post('/',
 
 
 
-// @route PUT /calcs/:id
-// @des update guest
+// @route PUT /api/calc/:id
+// @des Update a user's calculation.
 // @access Private
-// router.put('/:id', protect, async (req, res) => {
-//   const { name, phone, diet, isconfirmed } = req.body
+router.put('/:id', protect, async (req, res) => {
+  const { calculations, notes } = req.body; // Basic destructuring.
 
-//   // build Calc object 
-//   const guestFields = { name, phone, diet, isconfirmed };
+  // Build a Calc object.
+  const calcFields = { calculations, notes };
 
-//   try {
-//     let guest = await Calc.findById(req.params.id)
-//     if (!guest) return res.status(404).json({ msg: 'Calc not found' })
-//     // Make sure user owns the guest
-//     if (guest.user.toString() !== req.user.id) {
-//       return res.status(401).json({ msg: 'Not authorised' })
-//     }
-//     guest = await Calc.findByIdAndUpdate(req.params.id, { $set: guestFields }, { new: true })
-//     res.send(guest)
-//   } catch (err) {
-//     console.errors(err.message)
-//     res.status(500).send('Server Error')
-//   }
-// })
+  try {
+    let calcToUpdate = await CalcData.findById(req.params.id);
+
+    // Check if calcToUpdate exists.
+    if (!calcToUpdate) return res.status(404).json({ msg: 'Calculation not found.' });
+
+    // Make sure user owns the calcToUpdate id.
+    if (calcToUpdate.user.toString() !== req.user.id) {
+      // In the vid, he used  if (!guest) {...
+      return res.status(401).json({ msg: 'Not authorized for this procedure.' });
+    }
+
+    calcToUpdate = await CalcData.findByIdAndUpdate(
+      req.params.id, 
+      { $set: calcFields }, 
+      { new: true }
+    );
+    res.send(calcToUpdate);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
 
 
 
-// @route DELETE /calcs/:id
-// @des Delete a guest
+// @route DELETE /api/calc/:id
+// @des Delete a user's calculation.
 // @access Private
-// router.delete('/:id', protect, async (req, res) => {
-//   try {
-//     let guest = await Calc.findById(req.params.id)
-//     if (!guest) return res.status(404).json({ msg: 'Calc not found' })
-//     // check if user owns the guest 
-//     if (guest.user.toString() !== req.user.id) {
-//       return res.status(401).json({ msg: 'Not authorised' })
-//     }
-//     await Calc.findByIdAndRemove(req.params.id)
-//     res.send('Calc Removed successfully')
-//   } catch (err) {
-//     console.errors(err.message).json('Server Error')
-//   }
-// });
+router.delete('/:id', protect, async (req, res) => {
+  try {
+    let calcToDelete = await CalcData.findById(req.params.id);
+
+    // Check if calcToDelete exists.
+    if (!calcToDelete) return res.status(404).json({ msg: 'This calculation was not found.' });
+
+    // Check if user owns the calcToDelete.
+    if (calcToDelete.user.toString() !== req.user.id) {
+      return res.status(401).json({ msg: 'Not authorized to perform this action.' });
+    }
+
+    await CalcData.findByIdAndRemove(req.params.id);
+    res.send('Calc removed successfully!');
+  } catch (err) {
+    console.errors(err.message).json('Server Error.');
+  }
+});
 
 
 
