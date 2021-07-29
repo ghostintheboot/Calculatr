@@ -1,5 +1,5 @@
 import React from 'react';
-import './CalculatorScreen.css';
+import './Calculator.css';
 import PointTarget from 'react-point';
 // import Modal from 'react-modal';
 
@@ -54,11 +54,12 @@ class CalculatorDisplay extends React.PureComponent {
       maximumFractionDigits: 6
     });
 
-    // Add back missing .0 in e.g. 12.0
+    // Add back missing .0 in, e.g. 12.0
     const match = value.match(/\.\d*?(0*)$/);
 
-    if (match)
+    if (match) {
       formattedValue += (/[1-9]/).test(match[0]) ? match[1] : match[0];
+    }
 
     return (
       <div {...props} className="calculator-display">
@@ -88,37 +89,12 @@ const CalculatorOperations = {
   '=': (prevValue, nextValue) => nextValue
 }
 
-class CalculatorScreen extends React.Component {
+class Calculator extends React.Component {
   state = {
     value: null,
     displayValue: '0',
     operator: null,
-    waitingForOperand: false,
-    isModalShown: false,
-    isSaveButtonShown: false,
-    formValue: ''
-  }
-
-  handleSaveModal = this.handleSaveModal.bind(this);
-  handleCloseModal = this.handleCloseModal.bind(this);
-  handleChange = this.handleChange.bind(this);
-  handleSubmit = this.handleSubmit.bind(this);
-
-  handleSaveModal() {
-    this.setState({ isModalShown: true });
-  }
-
-  handleCloseModal() {
-    this.setState({ isModalShown: false });
-  }
-
-  handleSubmit() {
-    alert(`Value: ${this.state.displayValue}\nText Input: ${this.state.formValue}`);
-    // event.preventDefault();
-  }
-
-  handleChange(event) {
-    this.setState({ formValue: event.target.value })
+    waitingForOperand: false
   }
 
   clearAll() {
@@ -160,8 +136,7 @@ class CalculatorScreen extends React.Component {
     const { displayValue } = this.state
     const currentValue = parseFloat(displayValue)
 
-    if (currentValue === 0)
-      return
+    if (currentValue === 0) return;
 
     const fixedDigits = displayValue.replace(/^-?\d*\.?/, '')
     const newValue = parseFloat(displayValue) / 100
@@ -221,103 +196,60 @@ class CalculatorScreen extends React.Component {
     });
   }
 
-  /* 😢 Couldn't figure out how to disable calc keys during modal focus. */
-  // handleKeyDown = (event) => {
-  //   let { key } = event
+  handleKeyDown = (event) => {
+    let { key } = event
 
-  //   if (key === 'Enter') {
-  //     key = '=';
-  //     setTimeout(() => { this.setState( () => ({ isSaveButtonShown: true })) }, 100)
-  //   }
+    if (key === 'Enter' || event.keyCode === 13) {
+      key = '=';
+    }
 
-  //   if ((/\d/).test(key)) {
-  //     event.preventDefault()
-  //     this.inputDigit(parseInt(key, 10))
-  //   } else if (key in CalculatorOperations) {
-  //     event.preventDefault()
-  //     this.performOperation(key)
-  //   } else if (key === '.') {
-  //     event.preventDefault()
-  //     this.inputDot()
-  //   } else if (key === '%') {
-  //     event.preventDefault()
-  //     this.inputPercent()
-  //   } else if (key === 'Backspace') {
-  //     event.preventDefault()
-  //     this.clearLastChar()
-  //   } else if (key === 'Clear') {
-  //     event.preventDefault()
+    if ((/\d/).test(key)) {
+      event.preventDefault();
+      this.inputDigit(parseInt(key, 10))
+    } else if (key in CalculatorOperations) {
+      event.preventDefault();
+      this.performOperation(key)
+    } else if (key === '.') {
+      event.preventDefault();
+      this.inputDot()
+    } else if (key === '%') {
+      event.preventDefault();
+      this.inputPercent()
+    } else if (key === 'Backspace') {
+      event.preventDefault();
+      this.clearLastChar()
+    } else if (key === 'Clear' || event.keyCode === 67) {
+      event.preventDefault();
 
-  //     if (this.state.displayValue !== '0') {
-  //       this.clearDisplay()
-  //     } else {
-  //       this.clearAll()
-  //     }
-  //   }
-  // };
+      if (this.state.displayValue !== '0') {
+        this.clearDisplay()
+      } else {
+        this.clearAll()
+      }
+    }
+  };
 
-  // componentDidMount() {
-  //   document.addEventListener('keydown', this.handleKeyDown);
-  // }
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleKeyDown);
+  }
 
-  // componentWillUnmount() {
-  //   document.removeEventListener('keydown', this.handleKeyDown)
-  // }
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeyDown)
+  }
 
   render() {
-    const { displayValue } = this.state
-
+    const { displayValue } = this.state;
     const clearDisplay = displayValue !== '0'
     const clearText = clearDisplay ? 'C' : 'AC'
 
     return (
       <div id="wrapper">
         <div id="app">
+        <h1 style={{textAlign:"center", fontSize:"3em", color:"#fff"}}>Calculatr</h1>
           <div className="calculator">
             <CalculatorDisplay value={displayValue} />
 
-            {this.state.isModalShown &&
-              <div className="modal-container">
-                <div>
-                  <div>
-                    <label>
-                      <h3 className="modal-title">Calculatr Notes:</h3>
-                      <textarea
-                        className="modal-textarea"
-                        type="text"
-                        value={this.state.formValue}
-                        placeholder="Enter optional notes here."
-                        maxLength={200}
-                        size={25}
-                        rows={10}
-                        cols={30}
-                        onChange={event => this.handleChange(event)}
-                      />
-                    </label>
-                  </div>
-                </div>
-                <div>
-                  <button 
-                    className="save-button" 
-                    type="submit" 
-                    onClick={() => {
-                      this.handleSubmit();
-                      this.clearAll();
-                      setTimeout(() => { this.handleCloseModal() }, 100);
-                      }}>[ Submit ]
-                  </button>
-                  <button 
-                    className="close-button" 
-                    onClick={() => {
-                      this.clearAll();
-                      this.handleCloseModal();
-                      }}>[ Cancel ]
-                  </button>
-                </div>
-              </div>
-            }
-            
-            <div className={this.state.isModalShown ? "dark-modal" : "normal-modal"}>
+            <div>
               <div className="calculator-keypad">
                 <div className="input-keys">
                   <div className="function-keys">
@@ -344,28 +276,11 @@ class CalculatorScreen extends React.Component {
                   <CalculatorKey className="key-multiply" onPress={() => this.performOperation('*')}>×</CalculatorKey>
                   <CalculatorKey className="key-subtract" onPress={() => this.performOperation('-')}>−</CalculatorKey>
                   <CalculatorKey className="key-add" onPress={() => this.performOperation('+')}>+</CalculatorKey>
-                  <CalculatorKey
-                    className="key-equals"
-                    onPress={() => {
-                      this.performOperation('=');
-                      setTimeout(() => { this.setState(prevState => ({ isSaveButtonShown: true })) }, 100)
-                    }}
-                  >=</CalculatorKey>
-                </div> {/* END normal-modal */} 
+                  <CalculatorKey className="key-equals" onPress={() => this.performOperation('=')}>=</CalculatorKey>
+                </div> {/* END normal-modal */}
               </div> {/* END calculator-keypad */}
             </div>
           </div>
-
-          {this.state.isSaveButtonShown
-            ? <button 
-                className="first-save-button"
-                onClick={() => {
-                  this.handleSaveModal();
-                  this.setState( () => ({disabled: true}));
-                }}>[ Save This Calculation ]
-              </button>
-            : null
-          }
         </div>
       </div>
     );
@@ -374,4 +289,4 @@ class CalculatorScreen extends React.Component {
 
 
 
-export default CalculatorScreen;
+export default Calculator;

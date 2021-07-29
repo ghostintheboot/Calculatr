@@ -1,30 +1,36 @@
-/*1️⃣2️⃣*/
+import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import './App.css';
 
 // Routing.
 import PrivateRoute from './components/routing/PrivateRoute';
 
 // Screens.
-import PrivateScreen from './components/screens/PrivateScreen';
-import LoginScreen from './components/screens/LoginScreen';
-import RegisterScreen from './components/screens/RegisterScreen';
-import ForgotPasswordScreen from './components/screens/ForgotPasswordScreen';
-import ResetPasswordScreen from './components/screens/ResetPasswordScreen';
-import CalculatorScreen from './components/screens/CalculatorScreen';
+import Private from './components/screens/Private';
+import Login from './components/screens/Login';
+import Register from './components/screens/Register';
+import ForgotPassword from './components/screens/ForgotPassword';
+import ResetPassword from './components/screens/ResetPassword';
+import Dev from './components/screens/Dev';
 
+// Auth Token.
+import setAuthToken from './utils/setAuthToken';
 
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 
 const App = () => {
   return (
     <Router>
       <div className="App">
         <Switch>
-          <PrivateRoute exact path="/" component={PrivateScreen} />
-          <Route exact path="/login" component={LoginScreen}/>
-          <Route exact path="/register" component={RegisterScreen}/>
-          <Route exact path="/forgotpassword" component={ForgotPasswordScreen}/>
-          <Route exact path="/passwordreset/:resetToken" component={ResetPasswordScreen}/>
-          <Route exact path="/calc" component={CalculatorScreen}/>
+          <PrivateRoute exact path="/" component={Private} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/forgotpassword" component={ForgotPassword} />
+          <Route exact path="/passwordreset/:resetToken" component={ResetPassword} />
+          <Route exact path="/dev" component={Dev} />
         </Switch>
       </div>
     </Router>

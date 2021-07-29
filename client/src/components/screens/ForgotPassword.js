@@ -2,11 +2,11 @@
 import { useState } from "react";
 import { Link } from 'react-router-dom';
 import axios from "axios";
-import "./ForgotPasswordScreen.css";
+import "./ForgotPassword.css";
 
 
 
-const ForgotPasswordScreen = () => {
+const ForgotPassword = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -75,4 +75,4 @@ const ForgotPasswordScreen = () => {
 
 
 
-export default ForgotPasswordScreen;
+export default ForgotPassword;

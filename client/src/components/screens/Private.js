@@ -1,13 +1,18 @@
 /*1️⃣4️⃣*/
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import "./PrivateScreen.css";
+import "./Private.css";
+import Calculator from './Calculator';
 
 
 
-const PrivateScreen = ({ history }) => {
+const Private = ({ history }) => {
   const [error, setError] = useState("");
   const [privateData, setPrivateData] = useState("");
+
+  // if (localStorage.getItem("authToken")) {
+  //   console.log("There's an auth token.");
+  // }
 
   useEffect(() => {
     // if (!localStorage.getItem("authToken")) {
@@ -40,12 +45,13 @@ const PrivateScreen = ({ history }) => {
     <span className="error-message">{error}</span>
   ) : (
     <>
-      <div style={{background: "green", color: "white"}}>{privateData}</div>
-      <button onClick={logoutHandler}>Logout</button>
+      <Calculator />
+      <button className="logout-button" onClick={logoutHandler}>Logout</button>
+      <span>{privateData}</span>
     </>
   );
 }
 
 
 
-export default PrivateScreen;
+export default Private;

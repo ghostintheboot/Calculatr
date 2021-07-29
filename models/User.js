@@ -20,7 +20,6 @@ const UserSchema = mongoose.Schema({
     lowercase: true,
     maxLength: [80, "Email is too long. Consider using a shorter email."],
     required: [true, "Please enter your email."],
-    // Most people would use Validator for the email but Lloyd is gangsta.
     match: [
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       "Please enter a valid email address."

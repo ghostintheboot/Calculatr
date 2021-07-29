@@ -1,2 +1,24 @@
-/*1️⃣5️⃣*/
-/* There was nothing here. */
+/* Logout button */
+.logout-button {
+  color: #fff;
+  font-size: 2.5em;
+  text-align: center;
+  margin-top: -25px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: darkviolet;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  -webkit-transition: background-color 0.4s ease-out;
+  -moz-transition: background-color 0.4s ease-out;
+  -o-transition: background-color 0.4s ease-out;
+  transition: background-color 0.4s ease-out;
+}
+
+.logout-button:hover {
+  background-color: deeppink;
+}

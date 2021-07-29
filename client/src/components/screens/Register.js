@@ -2,11 +2,11 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import './RegisterScreen.css';
+import './Register.css';
 
 
 
-const RegisterScreen = ({ history }) => {
+const Register = ({ history }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -124,4 +124,4 @@ const RegisterScreen = ({ history }) => {
 
 
 
-export default RegisterScreen;
+export default Register;

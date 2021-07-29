@@ -2,11 +2,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import "./ResetPasswordScreen.css";
+import "./ResetPassword.css";
 
 
 
-const ResetPasswordScreen = ({ match }) => {
+const ResetPassword = ({ match }) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
@@ -94,4 +94,4 @@ const ResetPasswordScreen = ({ match }) => {
 
 
 
-export default ResetPasswordScreen;
+export default ResetPassword;
