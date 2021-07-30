@@ -56,7 +56,8 @@ button:active {
 .calculator-display {
   color: white;
   background: #1c191c;
-  line-height: 130px;
+  line-height: 120px;
+  margin-bottom: 120px; /*🤪No idea why line height wasn't good enough. CSS is the debbil.*/
   font-size: 6em;
   flex: 1;
   font-family: 'Rational Integer', sans-serif;
@@ -136,7 +137,7 @@ button:active {
   color: transparent;
   position: absolute;
   transform: translate(-50%, -50%);
-  top: -5%;
+  top: -7%;
   left: 50%;
   font-size: 3.5em;
   font-family: 'Old Republic', sans-serif;
@@ -162,7 +163,6 @@ button:active {
 .key-percent:hover {
   background-color: purple;
 }
-
 
 .key-clear,
 .key-sign,

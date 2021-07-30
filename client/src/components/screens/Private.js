@@ -45,9 +45,13 @@ const Private = ({ history }) => {
     <span className="error-message">{error}</span>
   ) : (
     <>
-      <Calculator />
-      <button className="logout-button" onClick={logoutHandler}>Logout</button>
-      <span>{privateData}</span>
+      <div id="wrapper">
+        <div id="app">
+          <Calculator />
+          <button className="logout-button" onClick={logoutHandler}>Logout</button>
+          <span>{privateData}</span>
+        </div>
+      </div>
     </>
   );
 }

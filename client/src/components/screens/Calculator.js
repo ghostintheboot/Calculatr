@@ -243,12 +243,11 @@ class Calculator extends React.Component {
     const clearText = clearDisplay ? 'C' : 'AC'
 
     return (
-      <div id="wrapper">
-        <div id="app">
-        <h1 className="calculator-title">CALCULATOR</h1>
+      <div>
+        <div>
+        <h1 className="calculator-title">CALCULATR</h1>
           <div className="calculator">
             <CalculatorDisplay value={displayValue} />
-
             <div>
               <div className="calculator-keypad">
                 <div className="input-keys">
@@ -258,7 +257,8 @@ class Calculator extends React.Component {
                     <CalculatorKey className="key-percent" onPress={() => this.inputPercent()}>%</CalculatorKey>
                   </div>
                   <div className="digit-keys">
-                    <CalculatorKey className="key-0" onPress={() => this.inputDigit(0)}>0</CalculatorKey>
+                    {/* 😂 Ghetto code is best code. I spammed &nbsp; on 0 to center align it. */}
+                    <CalculatorKey className="key-0" onPress={() => this.inputDigit(0)}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0</CalculatorKey>
                     <CalculatorKey className="key-dot" onPress={() => this.inputDot()}>●</CalculatorKey>
                     <CalculatorKey className="key-1" onPress={() => this.inputDigit(1)}>1</CalculatorKey>
                     <CalculatorKey className="key-2" onPress={() => this.inputDigit(2)}>2</CalculatorKey>

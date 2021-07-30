@@ -6,8 +6,12 @@ import Calculator from './Calculator';
 const Dev = () => {
   return (
     <>
-      <Calculator />
-      <button className="logout-button">Logout</button>
+      <div id="wrapper">
+        <div id="app">
+          <Calculator />
+          <button className="logout-button">Logout</button>
+        </div>
+      </div>
     </>
   );
 }
