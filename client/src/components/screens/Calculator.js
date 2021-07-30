@@ -245,7 +245,7 @@ class Calculator extends React.Component {
     return (
       <div id="wrapper">
         <div id="app">
-        <h1 style={{textAlign:"center", fontSize:"3em", color:"#fff"}}>Calculatr</h1>
+        <h1 className="calculator-title">CALCULATOR</h1>
           <div className="calculator">
             <CalculatorDisplay value={displayValue} />
 

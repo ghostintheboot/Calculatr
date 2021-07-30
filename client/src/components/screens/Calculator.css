@@ -28,7 +28,6 @@ button:active {
 }
 
 #wrapper {
-  margin-top: -50px;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -59,8 +58,8 @@ button:active {
   background: #1c191c;
   line-height: 130px;
   font-size: 6em;
-  
   flex: 1;
+  font-family: 'Rational Integer', sans-serif;
 }
 
 .auto-scaling-text {
@@ -128,9 +127,103 @@ button:active {
   font-size: 3em;
 }
 
-.calculator .function-keys {
+/* .calculator .function-keys {
   background: linear-gradient(to bottom, rgba(202,202,204,1) 0%, rgba(196,194,204,1) 100%);
+} */
+
+
+.calculator-title {
+  color: transparent;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: -5%;
+  left: 50%;
+  font-size: 3.5em;
+  font-family: 'Old Republic', sans-serif;
+  background-image: linear-gradient(
+    to bottom,
+    white 50%,
+    black 60%,
+    gray 80%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
 }
-.calculator .operator-keys {
-  background:  linear-gradient(to bottom, rgba(252,156,23,1) 0%, rgba(247,126,27,1) 100%);
+
+
+/* BUTTONS ==================================================================== */
+
+.key-clear:hover,
+.key-sign:hover,
+.key-percent:hover {
+  background-color: purple;
+}
+
+
+.key-clear,
+.key-sign,
+.key-percent {
+  background-color: blue;
+  -webkit-transition: background-color 0.4s ease-out;
+  -moz-transition: background-color 0.4s ease-out;
+  -o-transition: background-color 0.4s ease-out;
+  transition: background-color 0.4s ease-out;
+  -ms-transition: background-color 0.4s ease-out;
+}
+
+.key-0,
+.key-dot,
+.key-1,
+.key-2,
+.key-3,
+.key-4,
+.key-5,
+.key-6,
+.key-7,
+.key-8,
+.key-9 {
+  background-color: pink;
+  -webkit-transition: background-color 0.4s ease-out;
+  -moz-transition: background-color 0.4s ease-out;
+  -o-transition: background-color 0.4s ease-out;
+  transition: background-color 0.4s ease-out;
+}
+
+.key-0:hover,
+.key-dot:hover,
+.key-1:hover,
+.key-2:hover,
+.key-3:hover,
+.key-4:hover,
+.key-5:hover,
+.key-6:hover,
+.key-7:hover,
+.key-8:hover,
+.key-9:hover {
+  background-color: rgb(255, 149, 0);
+}
+
+.key-divide,
+.key-multiply,
+.key-subtract,
+.key-add,
+.key-equals {
+  /* background:  linear-gradient(to bottom, rgba(252,156,23,1) 0%, rgba(247,126,27,1) 100%); */
+  background-color: rgb(221, 136, 17);
+  -webkit-transition: background-color 0.4s ease-out;
+  -moz-transition: background-color 0.4s ease-out;
+  -o-transition: background-color 0.4s ease-out;
+  transition: background-color 0.4s ease-out;
+}
+
+.key-divide:hover,
+.key-multiply:hover,
+.key-subtract:hover,
+.key-add:hover,
+.key-equals:hover {
+  background-color: rgb(255, 149, 0);
 }
