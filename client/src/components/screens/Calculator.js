@@ -245,7 +245,7 @@ class Calculator extends React.Component {
     return (
       <div>
         <div>
-        <h1 className="calculator-title">CALCULATR</h1>
+          <h1 className="calculator-title">CALCULATR</h1>
           <div className="calculator">
             <CalculatorDisplay value={displayValue} />
             <div>
@@ -258,7 +258,7 @@ class Calculator extends React.Component {
                   </div>
                   <div className="digit-keys">
                     {/* 😂 Ghetto code is best code. I spammed &nbsp; on 0 to center align it. */}
-                    <CalculatorKey className="key-0" onPress={() => this.inputDigit(0)}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0</CalculatorKey>
+                    <CalculatorKey className="key-0" onPress={() => this.inputDigit(0)}>&nbsp;&nbsp;&nbsp;0</CalculatorKey>
                     <CalculatorKey className="key-dot" onPress={() => this.inputDot()}>●</CalculatorKey>
                     <CalculatorKey className="key-1" onPress={() => this.inputDigit(1)}>1</CalculatorKey>
                     <CalculatorKey className="key-2" onPress={() => this.inputDigit(2)}>2</CalculatorKey>

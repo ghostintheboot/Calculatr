@@ -1,6 +1,7 @@
 /* Background */
 body {
-	background-image: url('./images/PhotoFunia-1627559143.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('./images/PhotoFunia-1627559143.jpg');
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.4)), to(rgba(0, 0, 0, 0.4))), url('./images/PhotoFunia-1627559143.jpg');
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;

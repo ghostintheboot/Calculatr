@@ -1,4 +1,3 @@
-/*1️⃣6️⃣*/
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -46,6 +45,8 @@ const Login = ({ history }) => {
   }
 
   return (
+    <div>
+      <h1 className="login-screen__calculator-title">CALCULATR</h1>
     <div className="login-screen">
       <form onSubmit={loginHandler} className="login-screen__form">
         <h3 className="login-screen__title">Login</h3>
@@ -64,7 +65,7 @@ const Login = ({ history }) => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="password">Password:{""}
+          <label htmlFor="password">Password: {""}
             <Link 
               to="/forgotpassword" 
               className="login-screen__forgotpassword"
@@ -83,7 +84,7 @@ const Login = ({ history }) => {
         </div>
 
           <button type="submit" className="btn btn-primary" tabIndex={3}>
-            Login
+            Login To Calculatr
           </button>
 
           <span className="login-screen__subtext">
@@ -91,6 +92,7 @@ const Login = ({ history }) => {
           </span>
 
       </form>
+    </div>
     </div>
   );
 }
