@@ -35,7 +35,6 @@
 .login-screen__form {
   width: 420px;
   padding: 1.5rem;
-  /* box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); */
   background: #1f0120;
   box-shadow: 0 0 .2rem #fff,
   0 0 .2rem #fff,
@@ -73,12 +72,14 @@
 }
 
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+input::placeholder {
   color: #ca4da1;
   background-color: #6e2957;
 }
 
-input:focus {
+input:focus,
+input:focus::placeholder {
   color: #ffddf4;
   background-color: #ca4da1;
 }

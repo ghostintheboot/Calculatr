@@ -26,8 +26,8 @@ const Login = ({ history }) => {
     try {
       // Destructure data from axios request.
       const { data } = await axios.post(
-        "/api/auth/login", 
-        { email, password }, 
+        "/api/auth/login",
+        { email, password },
         config
       );
 
@@ -47,41 +47,41 @@ const Login = ({ history }) => {
   return (
     <div>
       <h1 className="login-screen__calculator-title">CALCULATR</h1>
-    <div className="login-screen">
-      <form onSubmit={loginHandler} className="login-screen__form">
-        <h3 className="login-screen__title">Login</h3>
-        {error && <span className="error-message">{error}</span>}
-        <div className="form-group">
-          <label htmlFor="email">Email:</label>
-          <input 
-            type="email"
-            required
-            id="email"
-            placeholder="Email address"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-            tabIndex={1}
-          />
-        </div>
+      <div className="login-screen">
+        <form onSubmit={loginHandler} className="login-screen__form">
+          <h3 className="login-screen__title">Login</h3>
+          {error && <span className="error-message">{error}</span>}
+          <div className="form-group">
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              required
+              id="email"
+              placeholder="Email address"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              tabIndex={1}
+            />
+          </div>
 
-        <div className="form-group">
-          <label htmlFor="password">Password: {""}
-            <Link 
-              to="/forgotpassword" 
-              className="login-screen__forgotpassword"
-              tabIndex={4}
-            >Forgot Your Password?</Link>
-          </label>
-          <input 
-            type="password"
-            required
-            id="password"
-            placeholder="Enter Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            tabIndex={2}
-          />
-        </div>
+          <div className="form-group">
+            <label htmlFor="password">Password: {""}
+              <Link
+                to="/forgotpassword"
+                className="login-screen__forgotpassword"
+                tabIndex={4}
+              >Forgot Your Password?</Link>
+            </label>
+            <input
+              type="password"
+              required
+              id="password"
+              placeholder="Enter Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              tabIndex={2}
+            />
+          </div>
 
           <button type="submit" className="btn btn-primary" tabIndex={3}>
             Login To Calculatr
@@ -91,8 +91,8 @@ const Login = ({ history }) => {
             Need an account? <Link to="/register">Register here.</Link>
           </span>
 
-      </form>
-    </div>
+        </form>
+      </div>
     </div>
   );
 }
