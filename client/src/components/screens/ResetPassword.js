@@ -63,7 +63,7 @@ const ResetPassword = ({ match }) => {
           {error && <span className="resetpassword__error-message">{error} </span>}
           {success && (
             <span className="resetpassword__success-message">
-              {success} <Link to="/login">Login</Link>
+              {success} <Link to="/login" tabIndex={4}>Login</Link>
             </span>
           )}
           <div className="form-group">
@@ -76,6 +76,7 @@ const ResetPassword = ({ match }) => {
               autoComplete="true"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              tabIndex={1}
             />
           </div>
           <div className="form-group">
@@ -88,9 +89,10 @@ const ResetPassword = ({ match }) => {
               autoComplete="true"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
+              tabIndex={2}
             />
           </div>
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary" tabIndex={3}>
             Reset Password
           </button>
         </form>

@@ -251,7 +251,7 @@ class Calculator extends React.Component {
             <div className="calculator-keypad">
               <div className="input-keys">
                 <div className="function-keys">
-                  <CalculatorKey className="key-clear" onPress={() => clearDisplay ? this.clearDisplay() : this.clearAll()}>{clearText}</CalculatorKey>
+                  <CalculatorKey tabIndex={2} className="key-clear" onPress={() => clearDisplay ? this.clearDisplay() : this.clearAll()}>{clearText}</CalculatorKey>
                   <CalculatorKey className="key-sign" onPress={() => this.toggleSign()}>±</CalculatorKey>
                   <CalculatorKey className="key-percent" onPress={() => this.inputPercent()}>%</CalculatorKey>
                 </div>
@@ -275,7 +275,7 @@ class Calculator extends React.Component {
                 <CalculatorKey className="key-multiply" onPress={() => this.performOperation('*')}>×</CalculatorKey>
                 <CalculatorKey className="key-subtract" onPress={() => this.performOperation('-')}>−</CalculatorKey>
                 <CalculatorKey className="key-add" onPress={() => this.performOperation('+')}>+</CalculatorKey>
-                <CalculatorKey className="key-equals" onPress={() => this.performOperation('=')}>=</CalculatorKey>
+                <CalculatorKey tabIndex={1} className="key-equals" onPress={() => this.performOperation('=')}>=</CalculatorKey>
               </div> {/* END normal-modal */}
             </div> {/* END calculator-keypad */}
           </div>

@@ -66,14 +66,15 @@ const ForgotPassword = () => {
               placeholder="Email address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              tabIndex={1}
             />
           </div>
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary" tabIndex={2}>
             Send Email!
           </button>
 
           <span className="forgotpassword-screen__subtext">
-            <Link to="/login">Return to Login page.</Link>
+            <Link to="/login" tabIndex={3}>Return to Login page.</Link>
           </span>
 
         </form>

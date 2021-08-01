@@ -77,6 +77,7 @@ const Register = ({ history }) => {
               placeholder="Enter email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              tabIndex={1}
             />
           </div>
 
@@ -89,6 +90,7 @@ const Register = ({ history }) => {
               placeholder="Enter Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              tabIndex={2}
             />
           </div>
 
@@ -101,15 +103,16 @@ const Register = ({ history }) => {
               placeholder="Confirm Password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
+              tabIndex={3}
             />
           </div>
 
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary" tabIndex={4}>
             Register
           </button>
 
           <span className="register-screen__subtext">
-            Already have an account? <Link to="/login">Login here.</Link>
+            Already have an account? <Link to="/login" tabIndex={5}>Login here.</Link>
           </span>
 
         </form>
