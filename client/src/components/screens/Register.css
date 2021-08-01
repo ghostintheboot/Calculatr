@@ -51,10 +51,17 @@
 
 .register-screen__form .btn-primary {
   margin-top: 15px;
-  background-color: #8c00ff;
+  background-color: #6e00c9;
   border: 1px solid #fff;
   word-spacing: 0.3rem;
   font-size: 1.3rem;
+}
+
+.register-screen__form .btn-primary:focus {
+  background-color: #8c00ff;
+  font-weight: bold;
+  word-spacing: 0.4rem;
+  letter-spacing: 2px;
 }
 
 .register-screen__form input[type="email"],
@@ -64,7 +71,12 @@
   background-color: #5e296e;
 }
 
-.register-screen__form input:focus,
+.register-screen__form input:focus {
+  color: #f5ddff;
+  background-color: #924dca;
+  border: 2px solid #fff;
+}
+
 .register-screen__form input:focus::placeholder {
   color: #f5ddff;
   background-color: #924dca;

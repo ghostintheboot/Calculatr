@@ -55,10 +55,17 @@
 
 .login-screen__form .btn-primary {
   margin-top: 15px;
-  background-color: #ff1db4;
+  background-color: #cc3f7a;
   border: 1px solid #fff;
   word-spacing: 0.3rem;
   font-size: 1.3rem;
+}
+
+.login-screen__form .btn-primary:focus {
+  background-color: #ff1db4;
+  font-weight: bold;
+  word-spacing: 0.4rem;
+  letter-spacing: 2px;
 }
 
 .login-screen__form input[type="email"],
@@ -68,7 +75,12 @@
   background-color: #6e2957;
 }
 
-.login-screen__form input:focus,
+.login-screen__form input:focus {
+  color: #ffddf4;
+  background-color: #ca4da1;
+  border: 2px solid #fff;
+}
+
 .login-screen__form input:focus::placeholder {
   color: #ffddf4;
   background-color: #ca4da1;

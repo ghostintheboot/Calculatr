@@ -13,9 +13,16 @@
 
 .logout-button:hover {
   font-size: 2.25rem;
-  background-color: #f51b3f;
+  background-color: #ff1037;
   animation: glow 2s infinite;
   -webkit-animation: glow 2s infinite;
+}
+
+.logout-button:focus {
+  background-color: #f51b3f;
+  font-weight: bold;
+  word-spacing: 0.4rem;
+  letter-spacing: 2px;
 }
 
 @keyframes glow {

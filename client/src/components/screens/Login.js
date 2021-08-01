@@ -77,7 +77,7 @@ const Login = ({ history }) => {
               <Link
                 to="/forgotpassword"
                 className="login-screen__forgotpassword"
-                tabIndex={4}
+                tabIndex={5}
               >Forgot Your Password?</Link>
             </label>
             <input
@@ -96,7 +96,7 @@ const Login = ({ history }) => {
           </button>
 
           <span className="login-screen__subtext">
-            Need an account? <Link to="/register">Register here.</Link>
+            Need an account? <Link to="/register" tabIndex={4}>Register here.</Link>
           </span>
 
         </form>

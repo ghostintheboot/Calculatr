@@ -40,7 +40,7 @@ const Private = ({ history }) => {
       <div id="wrapper">
         <div id="app">
           <Calculator />
-          <button className="logout-button" onClick={logoutHandler}>Logout</button>
+          <button className="logout-button" onClick={logoutHandler} tabIndex={1}>Logout</button>
           <span>{privateData}</span>
         </div>
       </div>
