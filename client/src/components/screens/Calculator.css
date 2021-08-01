@@ -144,23 +144,29 @@ button:active {
 (_______/|/     \|(_______/(_______/(_______)(_______/|/     \|   )_(   |/   \__/
                                                                                  
 https://patorjk.com/software/taag/#p=display&f=Epic&t=calculatr
+
+Sadly, I couldn't get this title to center align.
+It's a different beast compared to login, register, and pw/pwreset.
+Crude use of margins and media queries ahead. ~👻
 */
 .calculator-title__original {
-  position: relative;
-  padding-top: 30px;
+  margin-left: -32%;
+  padding-top: 40px;
   width: fit-content; /* Fills out the word. */
   text-align: center;
   font-size: 3.5rem;
   font-family: 'Old Republic', sans-serif;
   color: transparent;
-  -webkit-text-stroke: 3px #a6effc;
+  -webkit-text-stroke: 3px #ffd5ee;
   background-clip: text;
   -webkit-background-clip: text;
   background-image: linear-gradient(
     to bottom,
-    #fff 75%,
-    #ff00ff 80%,
-    #b842b8 85%
+    #fff 19%,
+    #b842b8 20%,
+    #fff 64%,
+    #b842b8 68%,
+    #ff00ff 72%
   );
 }
 
@@ -242,26 +248,39 @@ https://patorjk.com/software/taag/#p=display&f=Epic&t=calculatr
 /* Media queries. ============================================================= */
 @media (max-width: 600px) {
   .calculator-title__original {
-    -webkit-text-stroke: 2px #a6effc;
+    margin-left: -21%;
+    -webkit-text-stroke: 2px #ffd5ee;
     font-size: 3rem;
+    background-image: linear-gradient(
+      to bottom,
+      #fff 20%,
+      #b842b8 30%,
+      #fff 68%,
+      #b842b8 78%,
+      #ff00ff 82%
+    );
   }
 }
 
 @media (max-width: 480px) {
   .calculator-title__original {
+    margin-left: -8%;
     font-size: 2.4rem;
   }
 }
 
 @media (max-width: 380px) {
   .calculator-title__original {
-    -webkit-text-stroke: 1px #a6effc;
+    margin-left: 4%;
+    -webkit-text-stroke: 1px #ffd5ee;
     font-size: 1.9rem;
     background-image: linear-gradient(
       to bottom,
-      #fff 81%,
-      #ff00ff 86%,
-      #b842b8 90%
-    );  
+      #fff 20%,
+      #b842b8 30%,
+      #fff 74%,
+      #b842b8 82%,
+      #ff00ff 85%
+    );
   }
 }
