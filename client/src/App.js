@@ -13,12 +13,7 @@ import ForgotPassword from './components/screens/ForgotPassword';
 import ResetPassword from './components/screens/ResetPassword';
 import Dev from './components/screens/Dev';
 
-// Auth Token.
-import setAuthToken from './utils/setAuthToken';
 
-if (localStorage.token) {
-  setAuthToken(localStorage.token);
-}
 
 const App = () => {
   return (
