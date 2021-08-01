@@ -79,3 +79,34 @@
 .register-screen__form a {
   color: #bf1dff;
 }
+
+
+
+/* Media queries. ============================================================= */
+@media (max-width: 600px) {
+  .register-screen__calculator-title {
+    -webkit-text-stroke: 2px azure;
+    font-size: 3em;
+    top: 16%;
+  }
+}
+
+@media (max-width: 480px) {
+  .register-screen__calculator-title {
+    font-size: 2.5em;
+    top: 17%;
+  }
+  .register-screen__form {
+    width: 360px;
+  }
+}
+
+@media (max-width: 380px) {
+  .register-screen__calculator-title {
+    font-size: 2em;
+    top: 18%;
+  }
+  .register-screen__form {
+    width: 320px;
+  }
+}

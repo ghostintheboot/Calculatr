@@ -83,3 +83,34 @@
 .login-screen__form a {
   color: #ff1db4;
 }
+
+
+
+/* Media queries. ============================================================= */
+@media (max-width: 600px) {
+  .login-screen__calculator-title {
+    -webkit-text-stroke: 2px azure;
+    font-size: 3em;
+    top: 21%;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-screen__calculator-title {
+    font-size: 2.5em;
+    top: 22%;
+  }
+  .login-screen__form {
+    width: 360px;
+  }
+}
+
+@media (max-width: 380px) {
+  .login-screen__calculator-title {
+    font-size: 2em;
+    top: 23%;
+  }
+  .login-screen__form {
+    width: 320px;
+  }
+}
