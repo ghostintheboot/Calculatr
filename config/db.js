@@ -20,7 +20,7 @@ const connectDB = async () => {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: true
-  }).then( () => console.log('MongoBongo II: ⚡Electric⚡ Boogaloo... connected!'));
+  }).then( () => console.log('MongoBongo database... ⚡connected!⚡'));
 }
 
 

@@ -1,14 +1,14 @@
 {
-  "name": "advanced_node_auth",
+  "name": "calculatr",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple MERN-stack app.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "server": "nodemon server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "gitb",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",

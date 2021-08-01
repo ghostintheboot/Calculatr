@@ -1,7 +1,6 @@
 import React from 'react';
 import './Calculator.css';
 import PointTarget from 'react-point';
-// import Modal from 'react-modal';
 
 
 
@@ -197,7 +196,7 @@ class Calculator extends React.Component {
   }
 
   handleKeyDown = (event) => {
-    let { key } = event
+    let { key } = event;
 
     if (key === 'Enter' || event.keyCode === 13) {
       key = '=';
@@ -222,9 +221,9 @@ class Calculator extends React.Component {
       event.preventDefault();
 
       if (this.state.displayValue !== '0') {
-        this.clearDisplay()
+        this.clearDisplay();
       } else {
-        this.clearAll()
+        this.clearAll();
       }
     }
   };
@@ -234,13 +233,13 @@ class Calculator extends React.Component {
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keydown', this.handleKeyDown)
+    document.removeEventListener('keydown', this.handleKeyDown);
   }
 
   render() {
     const { displayValue } = this.state;
-    const clearDisplay = displayValue !== '0'
-    const clearText = clearDisplay ? 'C' : 'AC'
+    const clearDisplay = displayValue !== '0';
+    const clearText = clearDisplay ? 'C' : 'AC';
 
     return (
       <div>

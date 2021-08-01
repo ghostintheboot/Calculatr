@@ -1,4 +1,3 @@
-/*9️⃣*/
 const express = require('express');
 const router = express.Router();
 const { getPrivateData } = require('../controllers/privateCon');

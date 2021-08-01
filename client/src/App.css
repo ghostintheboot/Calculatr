@@ -9,6 +9,7 @@ body {
 }
 
 
+
 /****************************** calc card **********************/
 .calc-card {
   color:var(--primary-color);
@@ -68,8 +69,7 @@ body {
   margin-top:1rem;
   padding: 0
  }
- 
- 
+
  .badge {
   position: absolute;
   right:0;
@@ -90,5 +90,3 @@ body {
       font-weight: bold;
     padding: 0 0.5rem
   }
- 
- 

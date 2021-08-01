@@ -1,4 +1,3 @@
-/*2️⃣2️⃣*/
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -36,8 +35,6 @@ const ResetPassword = ({ match }) => {
         { password },
         config
       );
-
-      // console.log(`📁screens/RePaSc.js📁 data var: ${data}`);
       setSuccess(data.data);
     } catch (error) {
       setError(error.response.data.error);

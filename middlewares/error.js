@@ -1,4 +1,3 @@
-/*6️⃣*/
 const ErrorResponse = require('../utils/ErrorResponse.js');
 
 
@@ -8,7 +7,6 @@ const errorHandler = (err, req, res, next) => {
   error.message = err.message;
 
   // console.log('📁middlewares/error.js📁, err: ', err);
-
   if (err.code === 11000) {
     const errMsg = 'Duplicate field value.';
     error = new ErrorResponse(errMsg, 400);

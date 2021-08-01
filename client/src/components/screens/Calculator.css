@@ -49,7 +49,7 @@ button:active {
 }
 
 #wrapper .calculator {
-  /* border: 1px solid #fff; */ /*❓Border ruins layout.*/
+  /* border: 1px solid #fff; */ /*❓border ruins layout.*/
   font-family: 'Negotiate Free', sans-serif !important;
   border-radius: 8px;
   box-shadow: 
@@ -82,7 +82,6 @@ button:active {
 .calculator-keypad {
   height: 400px;
   display: flex;
-  /* position: relative; */
 }
 
 .calculator .input-keys {
@@ -155,6 +154,7 @@ button:active {
 }
 
 
+
 /* BUTTONS ==================================================================== */
 
 .key-clear,
@@ -211,14 +211,12 @@ button:active {
 .key-subtract,
 .key-add,
 .key-equals {
-  /* background:  linear-gradient(to bottom, rgba(252,156,23,1) 0%, rgba(247,126,27,1) 100%); */
   background-color: #a000a0;
   -webkit-transition: background-color 0.4s ease-out;
   -moz-transition: background-color 0.4s ease-out;
   -o-transition: background-color 0.4s ease-out;
   transition: background-color 0.4s ease-out;
 }
-/* ff00ff */
 
 .key-divide:hover,
 .key-multiply:hover,

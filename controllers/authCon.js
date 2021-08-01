@@ -1,4 +1,3 @@
-/*2️⃣*/
 const crypto = require('crypto');
 const User = require('../models/User.js');
 const ErrorResponse = require('../utils/errorResponse.js');

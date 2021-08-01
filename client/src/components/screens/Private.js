@@ -1,4 +1,3 @@
-/*1️⃣4️⃣*/
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import "./Private.css";
@@ -10,14 +9,7 @@ const Private = ({ history }) => {
   const [error, setError] = useState("");
   const [privateData, setPrivateData] = useState("");
 
-  // if (localStorage.getItem("authToken")) {
-  //   console.log("There's an auth token.");
-  // }
-
   useEffect(() => {
-    // if (!localStorage.getItem("authToken")) {
-    //   history.push("/login");
-    // }
     const fetchPrivateData = async () => {
       const config = {
         headers: {
@@ -34,7 +26,7 @@ const Private = ({ history }) => {
       }
     }
     fetchPrivateData();
-  }, [history]); // END useEffect.
+  }, [history]);
 
   const logoutHandler = () => {
     localStorage.removeItem("authToken");
