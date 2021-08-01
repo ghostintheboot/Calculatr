@@ -11,7 +11,6 @@ import Login from './components/screens/Login';
 import Register from './components/screens/Register';
 import ForgotPassword from './components/screens/ForgotPassword';
 import ResetPassword from './components/screens/ResetPassword';
-import Dev from './components/screens/Dev';
 
 
 
@@ -25,7 +24,6 @@ const App = () => {
           <Route exact path="/register" component={Register} />
           <Route exact path="/forgotpassword" component={ForgotPassword} />
           <Route exact path="/passwordreset/:resetToken" component={ResetPassword} />
-          <Route exact path="/dev" component={Dev} />
         </Switch>
       </div>
     </Router>
