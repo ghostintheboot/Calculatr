@@ -95,6 +95,10 @@ const ResetPassword = ({ match }) => {
           <button type="submit" className="btn btn-primary" tabIndex={3}>
             Reset Password
           </button>
+
+          <span className="resetpassword-screen__subtext">
+            I changed my mind. Bring me back to the <Link to="/login" tabIndex={5}>Login page.</Link>
+          </span>
         </form>
       </div>
     </div>
