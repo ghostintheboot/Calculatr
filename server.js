@@ -14,8 +14,6 @@ app.use(express.json());
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/private', require('./routes/privateRoutes'));
 
-
-
 // Error Handlers (Should be LAST of midwares.)
 app.use(errorHandler);
 

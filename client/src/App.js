@@ -24,6 +24,7 @@ const App = () => {
           <Route exact path="/register" component={Register} />
           <Route exact path="/forgotpassword" component={ForgotPassword} />
           <Route exact path="/passwordreset/:resetToken" component={ResetPassword} />
+          <Route path="*" component={Login} /> {/* Prolly a better way of doing redirects... */}
         </Switch>
       </div>
     </Router>
