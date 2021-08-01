@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from 'react-router-dom';
 import axios from "axios";
 import "./ForgotPassword.css";
+import ForgotAndResetImg from './../../images/forgotNreset-bg.jpg';
 
 
 
@@ -36,7 +37,13 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div>
+    <div style={{
+      background: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${ForgotAndResetImg})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundAttachment: 'fixed',
+      height: '100vh'
+    }}>
       <h1 className="forgotpassword-screen__calculator-title">CALCULATR</h1>
       <div className="forgotpassword-screen">
         <form

@@ -28,7 +28,8 @@ button:active {
 }
 
 #wrapper {
-  height: 100vh;
+  /* height: 100vh; */
+  height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -130,27 +131,37 @@ button:active {
   font-size: 3em;
 }
 
+
+
+/* 
+ _______  _______  _        _______           _        _______ _________ _______ 
+(  ____ \(  ___  )( \      (  ____ \|\     /|( \      (  ___  )\__   __/(  ____ )
+| (    \/| (   ) || (      | (    \/| )   ( || (      | (   ) |   ) (   | (    )|
+| |      | (___) || |      | |      | |   | || |      | (___) |   | |   | (____)|
+| |      |  ___  || |      | |      | |   | || |      |  ___  |   | |   |     __)
+| |      | (   ) || |      | |      | |   | || |      | (   ) |   | |   | (\ (   
+| (____/\| )   ( || (____/\| (____/\| (___) || (____/\| )   ( |   | |   | ) \ \__
+(_______/|/     \|(_______/(_______/(_______)(_______/|/     \|   )_(   |/   \__/
+                                                                                 
+https://patorjk.com/software/taag/#p=display&f=Epic&t=calculatr
+*/
 .calculator-title__original {
-  -webkit-text-stroke: 3px azure;
-  color: transparent;
-  position: absolute;
-  transform: translate(-50%, -50%);
-  top: -8%;
-  left: 50%;
-  font-size: 3.5em;
+  position: relative;
+  padding-top: 30px;
+  width: fit-content; /* Fills out the word. */
+  text-align: center;
+  font-size: 3.5rem;
   font-family: 'Old Republic', sans-serif;
-  background-image: linear-gradient(
-    to bottom,
-    #fff 50%,
-    #ff00ff 60%,
-    #b842b8 80%
-  );
+  color: transparent;
+  -webkit-text-stroke: 3px #a6effc;
   background-clip: text;
   -webkit-background-clip: text;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
+  background-image: linear-gradient(
+    to bottom,
+    #fff 75%,
+    #ff00ff 80%,
+    #b842b8 85%
+  );
 }
 
 
@@ -224,4 +235,33 @@ button:active {
 .key-add:hover,
 .key-equals:hover {
   background-color: #ff00ff;
+}
+
+
+
+/* Media queries. ============================================================= */
+@media (max-width: 600px) {
+  .calculator-title__original {
+    -webkit-text-stroke: 2px #a6effc;
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .calculator-title__original {
+    font-size: 2.4rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .calculator-title__original {
+    -webkit-text-stroke: 1px #a6effc;
+    font-size: 1.9rem;
+    background-image: linear-gradient(
+      to bottom,
+      #fff 81%,
+      #ff00ff 86%,
+      #b842b8 90%
+    );  
+  }
 }

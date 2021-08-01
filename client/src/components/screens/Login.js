@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Login.css';
+import LoginImg from './../../images/login-bg.jpg';
 
 
 
@@ -45,7 +46,14 @@ const Login = ({ history }) => {
   }
 
   return (
-    <div>
+    // Ghetto code once again.
+    <div style={{
+      background: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${LoginImg})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundAttachment: 'fixed',
+      height: '100vh'
+    }}>
       <h1 className="login-screen__calculator-title">CALCULATR</h1>
       <div className="login-screen">
         <form onSubmit={loginHandler} className="login-screen__form">

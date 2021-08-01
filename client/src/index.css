@@ -6,8 +6,9 @@
 
 body {
   line-height: 1.7;
-  background: #eee;
-  color: #333;
+  /* There's a brief flicker between bg images.
+     Put background as dark purp1e so it blends well with everything else. */
+  background: #210127;
 }
 
 .form-group,

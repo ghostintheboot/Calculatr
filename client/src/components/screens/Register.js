@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './Register.css';
+import RegisterImg from './../../images/register-bg.jpg';
 
 
 
@@ -55,7 +56,13 @@ const Register = ({ history }) => {
   }
 
   return (
-    <div>
+    <div style={{
+      background: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${RegisterImg})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundAttachment: 'fixed',
+      height: '100vh'
+    }}>
       <h1 className="register-screen__calculator-title">CALCULATR</h1>
       <div className="register-screen">
         <form onSubmit={registerHandler} className="register-screen__form">

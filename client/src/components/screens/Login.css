@@ -1,29 +1,23 @@
 .login-screen__calculator-title {
-  -webkit-text-stroke: 3px azure;
-  color: transparent;
-  position: absolute;
-  transform: translate(-50%, -50%);
-  top: 20%;
-  left: 50%;
-  font-size: 3.5em;
+  padding-top: 100px; /*Space for the header. Pushes down the rest of the app.*/
+  text-align: center;
+  font-size: 3.5rem;
   font-family: 'Old Republic', sans-serif;
-  background-image: linear-gradient(
-    to bottom,
-    white 50%,
-    #52006b 60%,
-    #f333c9 80%
-  );
+  color: transparent;
+  -webkit-text-stroke: 3px #ffc7fa;
   background-clip: text;
   -webkit-background-clip: text;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
+  background-image: linear-gradient(
+    to bottom,
+    white 75%,
+    #52006b 80%,
+    #f333c9 85%
+  );
 }
 
 .login-screen {
   width: 100%;
-  height: 100vh;
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -89,16 +83,14 @@
 /* Media queries. ============================================================= */
 @media (max-width: 600px) {
   .login-screen__calculator-title {
-    -webkit-text-stroke: 2px azure;
-    font-size: 3em;
-    top: 21%;
+    -webkit-text-stroke: 2px #ffc7fa;
+    font-size: 3rem;
   }
 }
 
 @media (max-width: 480px) {
   .login-screen__calculator-title {
-    font-size: 2.5em;
-    top: 22%;
+    font-size: 2.4rem;
   }
   .login-screen__form {
     width: 360px;
@@ -107,8 +99,14 @@
 
 @media (max-width: 380px) {
   .login-screen__calculator-title {
-    font-size: 2em;
-    top: 23%;
+    -webkit-text-stroke: 1px #ffc7fa;
+    font-size: 1.9rem;
+    background-image: linear-gradient(
+      to bottom,
+      white 81%,
+      #52006b 86%,
+      #f333c9 90%
+    );
   }
   .login-screen__form {
     width: 320px;
