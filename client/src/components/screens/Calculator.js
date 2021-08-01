@@ -245,7 +245,7 @@ class Calculator extends React.Component {
     return (
       <div>
         <div>
-          <h1 className="calculator-title">CALCULATR</h1>
+          <h1 className="calculator-title__original">CALCULATR</h1>
           <div className="calculator">
             <CalculatorDisplay value={displayValue} />
             <div>
