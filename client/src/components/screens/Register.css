@@ -3,7 +3,7 @@
   color: transparent;
   position: absolute;
   transform: translate(-50%, -50%);
-  top: 10%;
+  top: 15%;
   left: 50%;
   font-size: 3.5em;
   font-family: 'Old Republic', sans-serif;
@@ -29,13 +29,19 @@
   align-items: center;
   font-family: 'Negotiate Free', sans-serif;
   font-size: 1.5rem;
+  color: #fff;
 }
 
 .register-screen__form {
   width: 420px;
   padding: 1.5rem;
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
-  background: #fff;
+  background: #250044;
+  box-shadow: 0 0 .2rem #fff,
+  0 0 .2rem #fff,
+  0 0 2rem #e5d4f3,
+  0 0 0.8rem #7b08ff,
+  0 0 2.8rem #8c00ff,
+  inset 0 0 1.3rem #8c00ff;
 }
 
 .register-screen__title {
@@ -47,4 +53,29 @@
   font-size: 0.9rem;
   display: block;
   margin: 0.5rem 0;
+}
+
+.register-screen__form .btn-primary {
+  margin-top: 15px;
+  background-color: #8c00ff;
+  border: 1px solid #fff;
+  word-spacing: 0.3rem;
+  font-size: 1.3rem;
+}
+
+.register-screen__form input[type="email"],
+.register-screen__form input[type="password"],
+.register-screen__form input::placeholder {
+  color: #874dca;
+  background-color: #5e296e;
+}
+
+.register-screen__form input:focus,
+.register-screen__form input:focus::placeholder {
+  color: #f5ddff;
+  background-color: #924dca;
+}
+
+.register-screen__form a {
+  color: #bf1dff;
 }

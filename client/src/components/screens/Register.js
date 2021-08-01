@@ -6,7 +6,6 @@ import './Register.css';
 
 
 const Register = ({ history }) => {
-  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -38,7 +37,7 @@ const Register = ({ history }) => {
       // Destructure data from axios request.
       const { data } = await axios.post(
         "/api/auth/register",
-        { username, email, password },
+        { email, password },
         config
       );
 
@@ -62,18 +61,6 @@ const Register = ({ history }) => {
         <form onSubmit={registerHandler} className="register-screen__form">
           <h3 className="register-screen__title">Register</h3>
           {error && <span className="error-message">{error}</span>}
-          <div className="form-group">
-            <label htmlFor="name">Username:</label>
-            <input
-              type="text"
-              required
-              id="name"
-              placeholder="Enter username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </div>
-
           <div className="form-group">
             <label htmlFor="email">Email:</label>
             <input

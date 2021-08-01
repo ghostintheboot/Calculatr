@@ -59,7 +59,7 @@
   margin: 0.5rem 0;
 }
 
-.btn-primary {
+.login-screen__form .btn-primary {
   margin-top: 15px;
   background-color: #ff1db4;
   border: 1px solid #fff;
@@ -67,23 +67,19 @@
   font-size: 1.3rem;
 }
 
-.login-screen__btn {
-  background-color: #ff1db4;
-}
-
-input[type="email"],
-input[type="password"],
-input::placeholder {
+.login-screen__form input[type="email"],
+.login-screen__form input[type="password"],
+.login-screen__form input::placeholder {
   color: #ca4da1;
   background-color: #6e2957;
 }
 
-input:focus,
-input:focus::placeholder {
+.login-screen__form input:focus,
+.login-screen__form input:focus::placeholder {
   color: #ffddf4;
   background-color: #ca4da1;
 }
 
-a {
+.login-screen__form a {
   color: #ff1db4;
 }

@@ -1,4 +1,3 @@
-/*2️⃣0️⃣*/
 import { useState } from "react";
 import { Link } from 'react-router-dom';
 import axios from "axios";
@@ -22,8 +21,8 @@ const ForgotPassword = () => {
 
     try {
       const { data } = await axios.post(
-        "/api/auth/forgotpassword", 
-        { email }, 
+        "/api/auth/forgotpassword",
+        { email },
         config
       );
       setSuccess(data.data);
@@ -37,38 +36,41 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="forgotpassword-screen">
-      <form
-        onSubmit={forgotPasswordHandler}
-        className="forgotpassword-screen__form"
-      >
-        <h3 className="forgotpassword-screen__title">Forgot Password</h3>
-        {error && <span className="error-message">{error}</span>}
-        {success && <span className="success-message">{success}</span>}
-        <div className="form-group">
-          <p className="forgotpassword-screen__subtext">
-            Please enter the email address you registered your account with. 
-            We will send your reset password confirmation to this email.
-          </p>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            required
-            id="email"
-            placeholder="Email address"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Send Email!
-        </button>
+    <div>
+      <h1 className="forgotpassword-screen__calculator-title">CALCULATR</h1>
+      <div className="forgotpassword-screen">
+        <form
+          onSubmit={forgotPasswordHandler}
+          className="forgotpassword-screen__form"
+        >
+          <h3 className="forgotpassword-screen__title">Forgot Password</h3>
+          {error && <span className="error-message">{error}</span>}
+          {success && <span className="success-message">{success}</span>}
+          <div className="form-group">
+            <p className="forgotpassword-screen__subtext">
+              Please enter the email address you registered your account with.
+              We will send your reset password confirmation to this email.
+            </p>
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              required
+              id="email"
+              placeholder="Email address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Send Email!
+          </button>
 
-        <span className="forgotpassword-screen__subtext">
-          <Link to="/login">Return to Login page.</Link>
-        </span>
-        
-      </form>
+          <span className="forgotpassword-screen__subtext">
+            <Link to="/login">Return to Login page.</Link>
+          </span>
+
+        </form>
+      </div>
     </div>
   );
 };

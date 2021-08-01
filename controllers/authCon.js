@@ -17,11 +17,11 @@ const sendToken = (user, statusCode, res) => {
 
 
 exports.register = async (req, res, next) => {
-  const { username, email, password } = req.body; // Destructuring.
+  const { email, password } = req.body; // Destructuring.
 
   try {
     const user = await User.create({
-      username, email, password
+      email, password
     });
     // res.status(201).json({ success: true, user });
     sendToken(user, 201, res);
