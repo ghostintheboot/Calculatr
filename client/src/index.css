@@ -51,7 +51,10 @@ body {
   color: #fff;
 }
 
-.error-message {
+.forgotpassword__error-message {
+  position: absolute;
+  bottom: -50px;
+  left: 0;
   width: 100%;
   display: inline-block;
   padding: 5px;
@@ -61,7 +64,10 @@ body {
   margin: 0.5rem 0;
 }
 
-.success-message {
+.forgotpassword__success-message {
+  position: absolute;
+  bottom: -50px;
+  left: 0;
   width: 100%;
   display: inline-block;
   padding: 5px;
@@ -69,4 +75,36 @@ body {
   color: #fff;
   text-align: center;
   margin: 0.5rem 0;
+}
+
+.resetpassword__error-message {
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  width: 100%;
+  display: inline-block;
+  padding: 5px;
+  background: red;
+  color: #fff;
+  text-align: center;
+  margin: 0.5rem 0;
+}
+
+.resetpassword__success-message {
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  width: 100%;
+  display: inline-block;
+  padding: 5px;
+  background: green;
+  color: #fff;
+  text-align: center;
+  margin: 0.5rem 0;
+}
+
+@media (max-width: 380px) {
+  .resetpassword__success-message{
+    bottom: -80px;
+  }
 }

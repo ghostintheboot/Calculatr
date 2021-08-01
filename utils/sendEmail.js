@@ -1,4 +1,3 @@
-/*1️⃣1️⃣*/
 const nodemailer = require('nodemailer');
 
 
@@ -16,7 +15,7 @@ const emailSender = async options => {
 
   // Options.
   const mailingOptions = {
-    from: 'Some Guy <someguy@example.com>',
+    from: 'Calculatr Autoresponder <calculatr-mern-app@example.com>',
     to: options.email,
     subject: options.subject,
     html: options.message
