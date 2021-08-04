@@ -1,5 +1,6 @@
 const dotenv = require('dotenv');
   dotenv.config({ path: './config.env' });
+const path = require('path');
 const express = require('express');
   const app = express();
 const connectDB = require('./config/db.js');
@@ -16,6 +17,20 @@ app.use('/private', require('./routes/privateRoutes'));
 
 // Error Handlers (Should be LAST of midwares.)
 app.use(errorHandler);
+
+if (process.env.NODE_ENV === "production") {
+  // Build.
+  app.use(express.static(path.join(__dirname, '/client/build')));
+
+  // Whenever there's a get route, serve index.html
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client','build', 'index.html'))
+  });
+} else {
+  app.get('/', (req, res) => {
+    res.send('API running. . .')
+  });
+}
 
 const PORT = process.env.PORT || 5000;
 
