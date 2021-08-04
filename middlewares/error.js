@@ -1,4 +1,4 @@
-const ErrorResponse = require('../utils/ErrorResponse.js');
+const ErrorResponse = require('../utils/errorResponse.js');
 
 
 
