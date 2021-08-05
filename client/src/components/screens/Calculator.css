@@ -51,22 +51,22 @@ button:active {
 
 #wrapper .calculator {
   /* border: 1px solid #fff; */ /*❓border ruins layout.*/
-  font-family: 'Negotiate Free', sans-serif !important;
+  font-family: 'PT Sans', sans-serif !important;
   border-radius: 8px;
   box-shadow: 
   0 4px 2rem #ff00ff,
     0 4px 1rem #eb24eb,
     0 4px 2.8rem #ad00ad;
   }
-  
-  .calculator-display {
+
+.calculator-display {
   color: white;
   background: #1c191c;
   line-height: 120px;
   margin-bottom: 120px; /*🤪No idea why line height wasn't good enough. CSS is the debbil.*/
-  font-size: 6em;
+  font-size: 3rem;
   flex: 1;
-  font-family: 'Rational Integer', sans-serif;
+  font-family: 'Roboto Mono', monospace;
 }
 
 .auto-scaling-text {
@@ -150,14 +150,14 @@ It's a different beast compared to login, register, and pw/pwreset.
 Crude use of margins and media queries ahead. ~👻
 */
 .calculator-title__original {
-  margin-left: -32%;
+  margin-left: -12%;
   padding-top: 40px;
   width: fit-content; /* Fills out the word. */
   text-align: center;
   font-size: 3.5rem;
-  font-family: 'Old Republic', sans-serif;
+  font-family: 'Bevan', cursive;
   color: transparent;
-  -webkit-text-stroke: 3px #ffd5ee;
+  -webkit-text-stroke: 2px #ffd5ee;
   background-clip: text;
   -webkit-background-clip: text;
   background-image: linear-gradient(
@@ -248,8 +248,7 @@ Crude use of margins and media queries ahead. ~👻
 /* Media queries. ============================================================= */
 @media (max-width: 600px) {
   .calculator-title__original {
-    margin-left: -21%;
-    -webkit-text-stroke: 2px #ffd5ee;
+    margin-left: -4%;
     font-size: 3rem;
     background-image: linear-gradient(
       to bottom,
@@ -264,23 +263,13 @@ Crude use of margins and media queries ahead. ~👻
 
 @media (max-width: 480px) {
   .calculator-title__original {
-    margin-left: -8%;
+    margin-left: 6%;
     font-size: 2.4rem;
   }
 }
 
 @media (max-width: 380px) {
   .calculator-title__original {
-    margin-left: 4%;
     -webkit-text-stroke: 1px #ffd5ee;
-    font-size: 1.9rem;
-    background-image: linear-gradient(
-      to bottom,
-      #fff 20%,
-      #b842b8 30%,
-      #fff 74%,
-      #b842b8 82%,
-      #ff00ff 85%
-    );
   }
 }

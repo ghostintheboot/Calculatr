@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link } from 'react-router-dom';
 import axios from "axios";
 import "./ForgotPassword.css";
-import ForgotAndResetImg from './../../images/forgotNreset-bg.jpg';
 
 
 
@@ -38,7 +37,7 @@ const ForgotPassword = () => {
 
   return (
     <div style={{
-      background: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${ForgotAndResetImg})`,
+      background: 'linear-gradient(rgba(255, 36, 49, 0.49), rgba(149, 24, 60, 0.46))',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backgroundAttachment: 'fixed',

@@ -1,11 +1,9 @@
 import React from 'react';
 import './Calculator.css';
 import PointTarget from 'react-point';
-// import CalcImg from './../../images/calc-bg.jpg';
 
 
 
-// const pointTarget = ReactPoint.PointTarget
 class AutoScalingText extends React.Component {
   state = {
     scale: 1
@@ -257,7 +255,7 @@ class Calculator extends React.Component {
                 </div>
                 <div className="digit-keys">
                   {/* 😂 Ghetto code is best code. I spammed &nbsp; on 0 to center align it. */}
-                  <CalculatorKey className="key-0" onPress={() => this.inputDigit(0)}>&nbsp;&nbsp;&nbsp;0</CalculatorKey>
+                  <CalculatorKey className="key-0" onPress={() => this.inputDigit(0)}>&nbsp;&nbsp;&nbsp;&nbsp;0</CalculatorKey>
                   <CalculatorKey className="key-dot" onPress={() => this.inputDot()}>●</CalculatorKey>
                   <CalculatorKey className="key-1" onPress={() => this.inputDigit(1)}>1</CalculatorKey>
                   <CalculatorKey className="key-2" onPress={() => this.inputDigit(2)}>2</CalculatorKey>

@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './Register.css';
-import RegisterImg from './../../images/register-bg.jpg';
 
 
 
@@ -57,7 +56,7 @@ const Register = ({ history }) => {
 
   return (
     <div style={{
-      background: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${RegisterImg})`,
+      background: 'linear-gradient(rgba(208, 36, 255, 0.48), rgba(145, 0, 110, 0.44))',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backgroundAttachment: 'fixed',

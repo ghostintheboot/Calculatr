@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Login.css';
-import LoginImg from './../../images/login-bg.jpg';
 
 
 
@@ -48,7 +47,7 @@ const Login = ({ history }) => {
   return (
     // Ghetto code once again.
     <div style={{
-      background: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${LoginImg})`,
+      background: 'linear-gradient(rgba(92, 84, 255, 0.48), rgba(37, 6, 172, 0.44))',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backgroundAttachment: 'fixed',

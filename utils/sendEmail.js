@@ -15,7 +15,7 @@ const emailSender = async options => {
 
   // Options.
   const mailingOptions = {
-    from: 'Calculatr Autoresponder <calculatr-mern-app@example.com>',
+    from: 'Calculatr Autoresponder <donotreply@mern-calculatr.herokuapp.com>',
     to: options.email,
     subject: options.subject,
     html: options.message
