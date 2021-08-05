@@ -10,7 +10,7 @@
 # What is Calculatr?
 This is a single-page app using the MERN stack. The user can register, login, logout, and reset password. After logging in, the user has access to a basic calculator app.
 
-![github-example-page](https://github.com/ghostintheboot/Calculatr/blob/dev/client/src/images/github-example-page.jpg)
+![github-login](https://github.com/ghostintheboot/Calculatr/blob/master/client/src/images/github-login.png)
 
 <br></br>
 
@@ -44,10 +44,10 @@ This is a single-page app using the MERN stack. The user can register, login, lo
 * React's Create React App https://reactjs.org/docs/create-a-new-react-app.html#create-react-app
 * React Calculator by M. Jackson https://codepen.io/mjijackson/full/xOzyGX
 * Photofunia.com https://photofunia.com/effects/retro-wave
-* CDNfonts.com:
-  * Rational Integer https://www.cdnfonts.com/rational-integer.font
-  * Negotiate https://www.cdnfonts.com/negotiate.font
-  * Old Republic https://www.cdnfonts.com/old-republic.font
+* Fonts:
+  * Roboto Mono https://fonts.google.com/specimen/Roboto+Mono
+  * Bevan https://fonts.google.com/specimen/Bevan
+  * PT Sans https://fonts.google.com/specimen/PT+Sans
 * Giphy.com:
   * Art Glitch GIF by dualvoidanima https://giphy.com/gifs/uM0QzrHWSDr4KwbC3v
   * Azarikh GIF by azarikh https://giphy.com/gifs/synthwave-retrowave-azarikh-X7eVBA2TSFz53oxolL
