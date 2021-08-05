@@ -1,3 +1,10 @@
+/* Fonts? */
+@import url("http://fonts.cdnfonts.com/css/negotiate");
+@import url("http://fonts.cdnfonts.com/css/old-republic");
+@import url("http://fonts.cdnfonts.com/css/rational-integer");
+
+
+
 /* Background for Calc. The others are handled in-line. */
 body {
   background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('./images/calc-bg.jpg');
