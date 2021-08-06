@@ -5,11 +5,15 @@ const nodemailer = require('nodemailer');
 const emailSender = async options => {
   // Transporter.
   let transporter = nodemailer.createTransport({
-    host: 'hotmail',
-    port: 2525,
+    host: process.env.EMAIL_HOST,
+    secureConnection: process.env.EMAIL_SECURE_CONNECTION,
+    port: process.env.EMAIL_PORT,
     auth: {
-      user: 'mern-7863141975920158@outlook.com',
-      pass: 'node47918151417106447'
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASSWORD
+    },
+    tls: {
+      ciphers: process.env.EMAIL_CYPHERS
     }
   });
 
