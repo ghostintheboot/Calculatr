@@ -69,7 +69,7 @@ exports.forgotpassword = async (req, res, next) => {
     const resetToken = user.getResetPasswordToken();
     await user.save();
 
-    const resetUrl = `http://localhost:3000/passwordreset/${resetToken}`;
+    const resetUrl = `https://mern-calculatr.herokuapp.com/passwordreset/${resetToken}`;
     const message = `
       <h2>Password Reset Request</h2>
       <p>Click link below to reset password:</p>
