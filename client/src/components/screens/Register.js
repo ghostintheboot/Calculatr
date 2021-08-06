@@ -66,7 +66,7 @@ const Register = ({ history }) => {
       <div className="register-screen">
         <form onSubmit={registerHandler} className="register-screen__form">
           <h3 className="register-screen__title">Register</h3>
-          {error && <span className="error-message">{error}</span>}
+          {error && <span className="register-screen__error-message">{error}</span>}
           <div className="form-group">
             <label htmlFor="email">Email:</label>
             <input

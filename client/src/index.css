@@ -7,7 +7,9 @@
 body {
   line-height: 1.7;
   /* There's a brief flicker between bg images.
-     Put background as dark purp1e so it blends well with everything else. */
+     Put background as dark purp1e so it blends well with everything else. 
+     EDIT TO ADD: I changed it so there's only one bg and color changes 
+       by linear-gradient. Keeping it anyway. */
   background: #210127;
 }
 
@@ -52,10 +54,9 @@ body {
   color: #fff;
 }
 
-.forgotpassword__error-message {
-  position: absolute;
-  bottom: -50px;
-  left: 0;
+/* These appear INSIDE the form. */
+.login-screen__error-message,
+.register-screen__error-message {
   width: 100%;
   display: inline-block;
   padding: 5px;
@@ -65,19 +66,8 @@ body {
   margin: 0.5rem 0;
 }
 
-.forgotpassword__success-message {
-  position: absolute;
-  bottom: -50px;
-  left: 0;
-  width: 100%;
-  display: inline-block;
-  padding: 5px;
-  background: green;
-  color: #fff;
-  text-align: center;
-  margin: 0.5rem 0;
-}
-
+/* These appear BELOW the form. */
+.forgotpassword__error-message,
 .resetpassword__error-message {
   position: absolute;
   bottom: -50px;
@@ -91,6 +81,7 @@ body {
   margin: 0.5rem 0;
 }
 
+.forgotpassword__success-message,
 .resetpassword__success-message {
   position: absolute;
   bottom: -50px;
