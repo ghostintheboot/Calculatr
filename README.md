@@ -14,6 +14,11 @@ This is a single-page app using the MERN stack. The user can register, login, lo
 
 <br></br>
 
+# Live App Link
+## Here: https://mern-calculatr.herokuapp.com
+
+<br></br>
+
 # Backend Dependencies
 * bcryptjs: ^2.4.3
 * dotenv: ^10.0.0
